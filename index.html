@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collabu - Comunidad Estudiantil Peruana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #5a42a6, #5abba6, #44d9e6);
+      font-family: 'Poppins', sans-serif;
+      color: #1f1f1f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    /* Vibrant hero */
+    .hero-image {
+      width: 100%;
+      max-height: 280px;
+      overflow: hidden;
+      border-bottom: 6px solid #2f2287;
+      position: relative;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85);
+      transition: transform 0.6s ease;
+    }
+    .hero-image:hover img {
+      transform: scale(1.05);
+    }
+    .hero-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      color: white;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+      font-weight: 700;
+      font-size: 1.8rem;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1.5px;
+    }
+    /* Logo stylized with shadow and spacing */
+    .logo-container {
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+    }
+    .logo {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 3px;
+      text-shadow:
+        0 0 5px #8e73f5,
+        0 0 10px #9bb8f5,
+        0 0 20px #8e73f5,
+        0 0 30px #6851c9,
+        0 0 40px #5a3db0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      user-select: none;
+    }
+    .logo i {
+      font-size: 2.6rem;
+      color: #f0e6ff;
+      filter: drop-shadow(0 0 8px #6f54ed);
+    }
+    .logo-subtitle {
+      color: #f0e6ff;
+      font-size: 1.3rem;
+      margin-top: 0.4rem;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-shadow: 0 0 4px rgba(0,0,0,0.3);
+      user-select: none;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #5a2ab3, #3e93bd);
+      color: white;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 1.5px;
+      padding: 1.2rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+    header i {
+      font-size: 1.8rem;
+      color: #b9d1ff;
+      text-shadow: 0 0 6px #aabffe;
+    }
+    /* Navigation */
+    nav {
+      background: #6626cccc;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 110;
+      backdrop-filter: saturate(180%) blur(10px);
+      border-radius: 0 0 24px 24px;
+    }
+    nav button {
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      color: #e2ddfb;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 8px transparent;
+      user-select: none;
+    }
+    nav button i {
+      font-size: 1.15rem;
+      filter: drop-shadow(0 0 1.5px #b39dffcc);
+      transition: transform 0.3s ease;
+    }
+    nav button:hover, nav button.active {
+      background: #a084ff88;
+      border-color: #d2beff;
+      box-shadow: 0 6px 15px rgba(160,132,255,0.9);
+      color: white;
+      transform: translateY(-3px);
+    }
+    nav button:hover i, nav button.active i {
+      transform: scale(1.15);
+      color: #f5ebff;
+      filter: drop-shadow(0 0 6px #d7c6ff);
+    }
+    nav button.logout-button {
+      margin-left: auto;
+      background: #5600bbcc;
+      color: #f9f7ff;
+      border-color: #4a21b4cc;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #5600bbbb;
+    }
+    nav button.logout-button:hover {
+      background: #3a0099cc;
+      box-shadow: 0 0 20px #39007bcc;
+      border-color: #28006a;
+      color: #fff;
+    }
+    /* Main content */
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 2rem 4rem 2rem;
+      background: #f8faff;
+      overflow-y: auto;
+      user-select: text;
+    }
+    section {
+      display: none;
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      padding: 2.4rem 2.8rem;
+      overflow-y: auto;
+      max-height: 75vh;
+      animation: fadeInUp 0.7s ease forwards;
+      position: relative;
+    }
+    section.active {
+      display: block;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Section titles */
+    h2 {
+      color: #5a2ab3;
+      margin-bottom: 1.8rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.7rem;
+      user-select: none;
+      font-size: 2.2rem;
+      letter-spacing: 0.5px;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 5px;
+      background: linear-gradient(90deg, #5a2ab3, #89d3d3);
+      border-radius: 8px;
+    }
+    /* Cards grid */
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem 2.2rem;
+    }
+    /* Card style */
+    .card {
+      background: linear-gradient(145deg, #e8efff, #d9e2ff);
+      border-radius: 18px;
+      padding: 1.8rem 1.8rem 2.2rem 1.8rem;
+      box-shadow: 0 6px 16px rgba(90, 42, 179, 0.15);
+      border-left: 8px solid #7b55ff;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(108, 57, 255, 0.3);
+      border-left-color: #9e7bff;
+      background: linear-gradient(145deg, #f7f9ff, #e3eaff);
+    }
+    .card h3 {
+      color: #462f99;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      filter: drop-shadow(0 0 5px #b59aefaa);
+    }
+    .card h3 i {
+      font-size: 1.3rem;
+      color: #8e77f4;
+      filter: drop-shadow(0 0 6px #a691f7);
+      transition: color 0.3s ease;
+    }
+    .card:hover h3 i {
+      color: #ab95fb;
+      filter: drop-shadow(0 0 10px #b6a1fb);
+      transform: scale(1.12);
+    }
+    .card p {
+      color: #3a325a;
+      font-size: 1rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+    /* Interclub badges */
+    .university-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #5a2ab3;
+      color: #eee;
+      padding: 0.3rem 0.8rem;
+      border-radius: 28px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 0 16px #7b55ffcc;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .university-badge i {
+      margin-right: 0.3rem;
+      color: #d2cfff;
+    }
+    /* Forms */
+    .form-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 44px rgba(58, 30, 120, 0.14);
+      padding: 3rem 3.5rem;
+      max-width: 480px;
+      margin: 2rem auto 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      user-select: none;
+    }
+    label {
+      font-weight: 600;
+      color: #362e7d;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    input[type="text"], 
+    input[type="password"], 
+    textarea,
+    select {
+      padding: 1.2rem 1.8rem;
+      border: 2px solid #bbb;
+      border-radius: 18px;
+      font-size: 1.1rem;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      color: #271a66;
+      resize: vertical;
+    }
+    input[type="text"]:focus, 
+    input[type="password"]:focus, 
+    textarea:focus,
+    select:focus {
+      border-color: #5a2ab3;
+      outline: none;
+      box-shadow: 0 0 8px 3px rgba(90, 42, 179, 0.28);
+    }
+    textarea {
+      min-height: 140px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    button.btn-primary {
+      background: linear-gradient(135deg, #7b55ff, #5436cc);
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 28px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 6px 18px rgba(123, 85, 255, 0.65);
+      user-select: none;
+    }
+    button.btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 34px rgba(132, 86, 253, 0.9);
+      background: linear-gradient(135deg, #9a7aff, #6b46ff);
+    }
+    /* Error and success messages */
+    #error-message,
+    #register-error-message {
+      color: #ff3d4a;
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 12px;
+      background: #ffe2e5;
+      user-select: none;
+      box-shadow: 0 0 12px #ff3d4a55;
+    }
+    #success-message {
+      color: #28c76f;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #d3f9d8;
+      border-radius: 12px;
+      user-select: none;
+      box-shadow: 0 0 12px #54c57166;
+    }
+    /* Form links */
+    .form-link {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #674efc;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      transition: color 0.3s;
+      user-select: none;
+    }
+    .form-link:hover {
+      color: #4a2ab3;
+      text-decoration: underline;
+    }
+    /* Notes */
+    .notes-container {
+      margin-top: 2rem;
+    }
+    .notes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.4rem;
+      margin-top: 2rem;
+    }
+    .note-card {
+      background: #f9faff;
+      border-radius: 18px;
+      padding: 1.8rem 2.2rem;
+      box-shadow: 0 6px 22px rgba(90, 42, 179, 0.1);
+      border-left: 8px solid #8056ff;
+      position: relative;
+      transition: transform 0.3s ease;
+      user-select: text;
+    }
+    .note-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 46px rgba(110, 70, 255, 0.35);
+      border-left-color: #a382ff;
+      background: #f3f6ff;
+    }
+    .note-card h4 {
+      color: #5436cc;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .note-card p {
+      color: #362e7d;
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .note-date {
+      font-size: 0.85rem;
+      color: #acacac;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
+    }
+    .note-date i {
+      color: #7b69f7;
+    }
+    .delete-note {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: #f73859;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(247, 56, 89, 0.7);
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .delete-note:hover {
+      background: #e31e3a;
+    }
+    /* Chat system */
+    .chat-container {
+      display: flex;
+      height: 520px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 10px 38px rgba(90, 42, 179, 0.15);
+      user-select: none;
+    }
+    .chat-sidebar {
+      width: 320px;
+      background: linear-gradient(160deg, #6a4fffdd, #396ef0cc);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      border-right: 3px solid #3a27a4;
+      transition: background 0.4s ease;
+    }
+    .chat-sidebar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .chat-sidebar::-webkit-scrollbar-thumb {
+      background-color: rgba(150, 150, 255, 0.45);
+      border-radius: 12px;
+    }
+    .chat-tabs {
+      display: flex;
+      border-bottom: 2.5px solid #5747deaa;
+      background: #3d31b4cc;
+    }
+    .chat-tab {
+      flex: 1;
+      cursor: pointer;
+      padding: 1rem;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.1rem;
+      letter-spacing: 0.8px;
+      color: #c6c6ffcc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .chat-tab i {
+      font-size: 1.3rem;
+      filter: drop-shadow(0 0 6px #7c78ff);
+    }
+    .chat-tab.active {
+      background: #6a4fff;
+      color: white;
+      box-shadow: inset 0 0 15px #a292ff;
+      letter-spacing: 1.2px;
+      user-select: text;
+    }
+    .chat-tab:hover:not(.active) {
+      background: #5139c9cc;
+      color: #d4cef8cc;
+    }
+    .chat-contacts {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .chat-contact {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #5748ff33;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      user-select: none;
+    }
+    .chat-contact:hover {
+      background: #6a5efd55;
+      box-shadow: inset 0 0 10px #9a84ff99;
+    }
+    .chat-contact.active {
+      background: #8a72ff;
+      color: white;
+      box-shadow: inset 0 0 25px #c3b7ffbb;
+      user-select: text;
+    }
+    .chat-contact-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: inherit;
+    }
+    .chat-contact-name i {
+      font-size: 1.2rem;
+      color: #ccc6ffcc;
+      filter: drop-shadow(0 0 4px #9d9affcc);
+      transition: color 0.3s ease;
+    }
+    .chat-contact.active .chat-contact-name i {
+      color: #e0dcff;
+      filter: drop-shadow(0 0 7px #c9c5ff);
+    }
+    .chat-contact-university {
+      font-size: 0.85rem;
+      color: #d6d3ffcc;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 500;
+      user-select: none;
+    }
+    .chat-contact.active .chat-contact-university {
+      color: white;
+    }
+    .chat-contact-university i {
+      color: #bbbbffcc;
+    }
+    /* Chat main */
+    .chat-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 0 20px 20px 0;
+      user-select: text;
+    }
+    .chat-header {
+      padding: 1.3rem 1.7rem;
+      background: linear-gradient(90deg, #6c4fff, #3659f0);
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      border-radius: 0 20px 0 0;
+      user-select: none;
+      box-shadow: 0 0 16px #8e81ffcc;
+    }
+    .chat-header i {
+      font-size: 1.6rem;
+      filter: drop-shadow(0 0 14px #a285ffcc);
+    }
+    .chat-messages {
+      flex-grow: 1;
+      padding: 2rem 2.5rem;
+      overflow-y: auto;
+      background: #f4f6ff;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background-color: #6b59ffbb;
+      border-radius: 20px;
+    }
+    .message {
+      max-width: 70%;
+      padding: 1rem 1.6rem;
+      border-radius: 20px;
+      position: relative;
+      animation: messageIn 0.3s ease;
+      box-shadow: 0 3px 12px rgba(84, 52, 255, 0.18);
+      font-size: 1rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+      user-select: text;
+    }
+    @keyframes messageIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message.sent {
+      background: #a9abfc;
+      margin-left: auto;
+      border-bottom-right-radius: 5px;
+      color: #321eaa;
+      box-shadow: 0 6px 25px rgba(84, 52, 255, 0.5);
+    }
+    .message.received {
+      background: white;
+      margin-right: auto;
+      border-bottom-left-radius: 5px;
+      color: #3b3471;
+    }
+    .message-sender {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #4f42b6;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .message-sender i {
+      font-size: 1.1rem;
+      filter: drop-shadow(0 0 5px #7a77f7);
+      color: #7d78ff;
+    }
+    .message-time {
+      font-size: 0.75rem;
+      color: #9a9fc2;
+      text-align: right;
+      margin-top: 0.4rem;
+      user-select: none;
+    }
+    /* Chat input */
+    .chat-input {
+      display: flex;
+      padding: 1.2rem 2.5rem 1.1rem;
+      background: #eaeaff;
+      border-radius: 0 0 20px 20px;
+      border-top: 1px solid #cbcaff;
+      gap: 1rem;
+      user-select: none;
+    }
+    .chat-input input {
+      flex-grow: 1;
+      padding: 0.85rem 1.4rem;
+      border: 2px solid transparent;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #352972;
+      transition: border-color 0.3s ease;
+      user-select: text;
+    }
+    .chat-input input:focus {
+      border-color: #5a2ab3;
+      outline: none;
+      box-shadow: 0 0 10px 3px rgba(90, 42, 179, 0.3);
+    }
+    .chat-input button {
+      background: #713bf3;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 0 1.8rem;
+      cursor: pointer;
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      box-shadow: 0 2px 8px #5d32d4;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .chat-input button i {
+      font-size: 1.4rem;
+    }
+    .chat-input button:hover {
+      background: #6a29f6;
+      box-shadow: 0 3px 18px #793ffb;
+    }
+    /* Profile */
+    #profile {
+      user-select: none;
+    }
+    #profile .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      user-select: text;
+    }
+    #profile .profile-photo-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: 0 0 16px rgba(90, 42, 179, 0.6);
+      overflow: hidden;
+      cursor: pointer;
+      border: 5px solid #ab95fb;
+      background: linear-gradient(135deg, #7b55ff, #5e35b1);
+      transition: box-shadow 0.3s ease;
+    }
+    #profile .profile-photo-wrapper:hover {
+      box-shadow: 0 0 28px rgba(135, 99, 243, 0.85);
+    }
+    #profile-photo-preview {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transition: transform 0.35s ease;
+    }
+    #profile-photo-placeholder {
+      color: #dedefe;
+      font-size: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      background: #876fff22;
+    }
+    #profile .profile-info h3 {
+      color: #4a2db5;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    #profile .profile-info p {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: #4836a1;
+      font-size: 1.1rem;
+      font-weight: 600;
+      user-select: none;
+    }
+    #profile .profile-info p i {
+      color: #8b79f9;
+      font-size: 1.3rem;
+    }
+    #profile-clubs-box {
+      background: #e9ebfa;
+      border-radius: 22px;
+      padding: 2rem 2.4rem;
+      box-shadow: 0 6px 24px rgba(90, 42, 179, 0.12);
+      color: #3c2e9b;
+      font-weight: 600;
+      font-size: 1.1rem;
+      user-select: text;
+      user-drag: none;
+    }
+    /* Profile Photo Upload */
+    #profile-photo-upload {
+      display: none;
+    }
+    #profile-photo-label {
+      position: absolute;
+      bottom: 8px;
+      right: 6px;
+      background: #5a2ab3;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 16px #7a6affcc;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    #profile-photo-label i {
+      color: white;
+      font-size: 1.3rem;
+      user-select: none;
+    }
+    #profile-photo-label:hover {
+      background: #7b55ff;
+      box-shadow: 0 0 24px #a282ffcc;
+    }
+    
+    /* University selector style */
+    .university-selector select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1.3rem center;
+      background-size: 1.1rem;
+      padding-right: 2.8rem;
+      color: #5436cc;
+      font-weight: 600;
+      border-radius: 16px;
+      border: 2px solid #8a7bff;
+      transition: all 0.3s ease;
+    }
+    .university-selector select:focus {
+      border-color: #6a4fff;
+      box-shadow: 0 0 8px 2px #8a7bffcc;
+      outline: none;
+      color: #4b33b7;
+    }
+    /* Fade transitions for form changes */
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    }
+    .fade-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Responsive improvements */
+    @media (max-width: 900px) {
+      main {
+        padding: 1.6rem 1.6rem 3rem 1.6rem;
+      }
+      section {
+        max-height: 70vh;
+      }
+    }
+    @media (max-width: 680px) {
+      nav {
+        gap: 0.8rem;
+        padding: 0.6rem 1rem;
+      }
+      nav button {
+        font-size: 0.88rem;
+        padding: 0.55rem 1rem;
+      }
+      .card-list {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      section {
+        max-height: 65vh;
+        padding: 2rem 2rem 2.5rem 2rem;
+      }
+      .form-container {
+        padding: 2rem 2rem 3rem 2rem;
+        max-width: 100%;
+      }
+      .chat-container {
+        height: 420px;
+        flex-direction: column;
+      }
+      .chat-sidebar {
+        width: 100%;
+        height: 160px;
+        border-right: none;
+        border-bottom: 3px solid #3a27a4;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .chat-sidebar::-webkit-scrollbar {
+        height: 6px;
+      }
+      .chat-contacts {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: transparent;
+        border-top: none;
+      }
+      .chat-contact {
+        min-width: 140px;
+        flex: none;
+        border: none;
+        border-right: 1.5px solid #5748ff33;
+        border-radius: 0 20px 20px 0;
+        padding: 0.7rem 1rem;
+        margin-right: 0.6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .chat-contact:last-child {
+        margin-right: 0;
+        border-right: none;
+        border-radius: 0 20px 20px 20px;
+      }
+      .chat-main {
+        height: calc(100% - 160px);
+        border-radius: 0 0 20px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero section with overlay text -->
+  <div class="hero-image">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c85fa06f-5a77-41b2-abff-da542e5ebd73.png" alt="Imagen vibrante mostrando estudiantes de diferentes universidades peruanas unidos y colaborando en un entorno dinámico y juvenil" />
+    <div class="hero-overlay">¡Unidos por la Educación Superior Peruana!</div>
+  </div>
+  
+  <!-- Logo y título -->
+  <div class="logo-container" aria-label="Logo de Collabu con icono de birrete y texto">
+    <div class="logo" tabindex="0"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Collabu</div>
+    <div class="logo-subtitle" tabindex="0">Comunidad Estudiantil Peruana | Unión y Crecimiento</div>
+  </div>
+
+  <!-- LOGIN -->
+  <section id="login-section" class="form-container active" aria-label="Sección de inicio de sesión">
+    <h2><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Iniciar sesión</h2>
+    <form id="login-form" novalidate>
+      <label for="login-username"><i class="fas fa-user" aria-hidden="true"></i> Usuario</label>
+      <input type="text" id="login-username" name="username" placeholder="Tu usuario" autocomplete="username" required autofocus />
+      <label for="login-password"><i class="fas fa-lock" aria-hidden="true"></i> Contraseña</label>
+      <input type="password" id="login-password" name="password" placeholder="Tu contraseña" autocomplete="current-password" required />
+      <button type="submit" class="btn-primary"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Ingresar</button>
+      <div id="error-message" aria-live="polite"></div>
+    </form>
+    <div class="form-link" id="show-register" role="button" tabindex="0" aria-label="Cambiar a formulario de registro">¿No tienes cuenta? <strong>Regístrate</strong></div>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="register-section" class="form-container" aria-label="Sección de registro de nuevos usuarios" style="display:none;">
+    <h2><i class="fas fa-user-plus" aria-hidden="true"></i> Crear cuenta</h2>
+    <form id="register-form" novalidate>
+      <label for="register-username"><i class="fas fa-user" aria-hidden="true"></i> Usuario</label>
+      <input type="text" id="register-username" name="username" placeholder="Elige un usuario" autocomplete="username" required autofocus />
+      <label for="register-password"><i class="fas fa-lock" aria-hidden="true"></i> Contraseña</label>
+      <input type="password" id="register-password" name="password" placeholder="Tu contraseña" autocomplete="new-password" required />
+      <label for="register-password-confirm"><i class="fas fa-lock" aria-hidden="true"></i> Confirmar contraseña</label>
+      <input type="password" id="register-password-confirm" name="passwordConfirm" placeholder="Confirma tu contraseña" autocomplete="new-password" required />
+      <div class="university-selector">
+        <label for="register-university"><i class="fas fa-university" aria-hidden="true"></i> Universidad</label>
+        <select id="register-university" name="university" required aria-required="true">
+          <option value="" disabled selected>Selecciona tu universidad</option>
+          <option value="UPC">Universidad Peruana de Ciencias Aplicadas (UPC)</option>
+          <option value="PUCP">Pontificia Universidad Católica del Perú (PUCP)</option>
+          <option value="UNMSM">Universidad Nacional Mayor de San Marcos (UNMSM)</option>
+          <option value="TECSUP">TECSUP</option>
+          <option value="UTP">Universidad Tecnológica del Perú (UTP)</option>
+          <option value="ULIMA">Universidad de Lima (ULIMA)</option>
+          <option value="USIL">Universidad San Ignacio de Loyola (USIL)</option>
+          <option value="UNI">Universidad Nacional de Ingeniería (UNI)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Registrarse</button>
+      <div id="register-error-message" aria-live="polite"></div>
+      <div id="success-message" aria-live="polite"></div>
+    </form>
+    <div class="form-link" id="show-login" role="button" tabindex="0" aria-label="Cambiar a formulario de inicio de sesión">¿Ya tienes cuenta? <strong>Inicia sesión</strong></div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div id="main-content" class="hidden" aria-live="polite" aria-label="Contenido principal de la aplicación">
+    <header><i class="fas fa-graduation-cap" aria-hidden="true"></i> Collabu</header>
+    <nav>
+      <button class="active" onclick="showSection('dashboard')" aria-label="Mostrar dashboard"><i class="fas fa-home" aria-hidden="true"></i> Dashboard</button>
+      <button onclick="showSection('clubs')" aria-label="Mostrar clubs"><i class="fas fa-users" aria-hidden="true"></i> Clubs</button>
+      <button onclick="showSection('activities')" aria-label="Mostrar actividades"><i class="fas fa-star" aria-hidden="true"></i> Actividades</button>
+      <button onclick="showSection('collaborations')" aria-label="Mostrar colaboraciones"><i class="fas fa-handshake" aria-hidden="true"></i> Colaboraciones</button>
+      <button onclick="showSection('network')" aria-label="Mostrar red interinstitucional"><i class="fas fa-network-wired" aria-hidden="true"></i> Red Interinstitucional</button>
+      <button onclick="showSection('chat')" aria-label="Mostrar chat"><i class="fas fa-comments" aria-hidden="true"></i> Chat</button>
+      <button onclick="showSection('notes')" aria-label="Mostrar notas"><i class="fas fa-sticky-note" aria-hidden="true"></i> Mis Notas</button>
+      <button onclick="showSection('profile')" aria-label="Mostrar perfil"><i class="fas fa-user" aria-hidden="true"></i> Mi Perfil</button>
+      <button onclick="logout()" class="logout-button" aria-label="Cerrar sesión"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Cerrar sesión</button>
+    </nav>
+    <main>
+      <section id="dashboard" class="active" tabindex="0" aria-label="Dashboard principal">
+        <h2><i class="fas fa-home" aria-hidden="true"></i> Bienvenido a Collabu</h2>
+        <p style="font-size:1.2rem; font-weight: 600;">Explora clubes y actividades extracurriculares y conecta con estudiantes de todo el Perú.</p>
+        <h3><i class="fas fa-trophy" aria-hidden="true"></i> Clubs Destacados</h3>
+        <div class="card-list" aria-live="polite" aria-label="Lista de clubes destacados">
+          <div class="card" tabindex="0" aria-describedby="club-ciencia-desc" role="button">
+            <h3><i class="fas fa-flask" aria-hidden="true"></i> Club de Ciencia</h3>
+            <p id="club-ciencia-desc">Únete a nosotros para explorar el mundo de la ciencia y el conocimiento.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="club-deportes-desc" role="button">
+            <h3><i class="fas fa-running" aria-hidden="true"></i> Club de Deportes</h3>
+            <p id="club-deportes-desc">Participa en actividades deportivas y mejora tu salud y amistad.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="club-tec-desc" role="button">
+            <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Club de Tecnología</h3>
+            <p id="club-tec-desc">Explora innovaciones tecnológicas con estudiantes de TECSUP, UPC y PUCP.</p>
+          </div>
+        </div>
+      </section>
+      <section id="clubs" tabindex="0" aria-label="Lista de clubs estudiantiles">
+        <h2><i class="fas fa-users" aria-hidden="true"></i> Clubs Estudiantiles</h2>
+        <div class="card-list" aria-live="polite">
+          <div class="card" tabindex="0" aria-describedby="club-tec-desc2" role="button">
+            <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Club de Tecnología</h3>
+            <p id="club-tec-desc2">Aprende sobre las últimas tendencias en tecnología, desarrollo y software.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="club-arte-desc" role="button">
+            <h3><i class="fas fa-paint-brush" aria-hidden="true"></i> Club de Arte</h3>
+            <p id="club-arte-desc">Explora tu creatividad y participa en exposiciones artísticas y talleres.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="club-robotica-desc" role="button">
+            <h3><i class="fas fa-robot" aria-hidden="true"></i> Club de Robótica</h3>
+            <p id="club-robotica-desc">Construye y programa robots junto a estudiantes de TECSUP e UNI.</p>
+          </div>
+        </div>
+      </section>
+      <section id="activities" tabindex="0" aria-label="Actividades extracurriculares">
+        <h2><i class="fas fa-star" aria-hidden="true"></i> Actividades Extracurriculares</h2>
+        <div class="card-list" aria-live="polite">
+          <div class="card" tabindex="0" aria-describedby="taller-desc" role="button">
+            <h3><i class="fas fa-code" aria-hidden="true"></i> Taller de Programación</h3>
+            <p id="taller-desc">Aprende a programar con expertos de TECSUP y otras universidades.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="concierto-desc" role="button">
+            <h3><i class="fas fa-music" aria-hidden="true"></i> Concierto de Fin de Año</h3>
+            <p id="concierto-desc">Disfruta de una noche llena de música y diversión con tus compañeros.</p>
+          </div>
+          <div class="card" tabindex="0" aria-describedby="maraton-desc" role="button">
+            <h3><i class="fas fa-book" aria-hidden="true"></i> Maratón de Lectura</h3>
+            <p id="maraton-desc">Participa en un evento de lectura y comparte tus libros favoritos.</p>
+          </div>
+        </div>
+      </section>
+      <section id="collaborations" tabindex="0" aria-label="Colaboraciones entre clubs">
+        <h2><i class="fas fa-handshake" aria-hidden="true"></i> Colaboraciones entre Clubs</h2>
+        <p style="font-weight: 600; font-size: 1.1rem;">Próximos eventos conjuntos para fortalecer la comunidad estudiantil:</p>
+        <ul style="list-style-type: none; padding-left: 0; font-weight: 600; color: #4836a1;">
+          <li style="padding: 0.7rem 0; border-bottom: 1px solid #ececff; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fas fa-music" aria-hidden="true"></i> Concierto de Música y Arte - 15 de diciembre
+          </li>
+          <li style="padding: 0.7rem 0; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fas fa-microscope" aria-hidden="true"></i> Feria de Ciencia y Tecnología (TECSUP y UPC) - 20 de enero
+          </li>
+        </ul>
+      </section>
+      <section id="network" tabindex="0" aria-label="Red interinstitucional">
+        <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Red Interinstitucional</h2>
+        <div class="university-filter" style="margin-bottom: 2rem;">
+          <label for="filter-university"><i class="fas fa-filter" aria-hidden="true"></i> Filtrar por institución:</label>
+          <select id="filter-university" onchange="filterClubs()" aria-label="Filtro de universidades para la red interinstitucional">
+            <option value="all">Todas las instituciones</option>
+            <option value="UPC">UPC</option>
+            <option value="PUCP">PUCP</option>
+            <option value="UNMSM">UNMSM</option>
+            <option value="TECSUP">TECSUP</option>
+            <option value="UTP">UTP</option>
+            <option value="ULIMA">ULIMA</option>
+            <option value="USIL">USIL</option>
+            <option value="UNI">UNI</option>
+          </select>
+        </div>
+        <h3><i class="fas fa-users" aria-hidden="true"></i> Clubs Interinstitucionales</h3>
+        <div class="card-list" id="interclubs-list" aria-live="polite" aria-label="Lista de clubs interinstitucionales"></div>
+        <h3><i class="fas fa-calendar-alt" aria-hidden="true"></i> Eventos Interinstitucionales</h3>
+        <div class="card-list" id="interevents-list" aria-live="polite" aria-label="Lista de eventos interinstitucionales"></div>
+      </section>
+      <section id="chat" tabindex="0" aria-label="Sistema de chat entre estudiantes">
+        <h2><i class="fas fa-comments" aria-hidden="true"></i> Chat</h2>
+        <div class="chat-container" role="region" aria-live="polite" aria-label="Chat de estudiantes">
+          <div class="chat-sidebar" role="navigation" aria-label="Lista de chats y contactos">
+            <div class="chat-tabs" role="tablist" aria-label="Pestañas de chat">
+              <div class="chat-tab active" onclick="switchChatTab('global')" role="tab" tabindex="0" aria-selected="true" aria-controls="global-contacts"><i class="fas fa-globe"></i> Global</div>
+              <div class="chat-tab" onclick="switchChatTab('private')" role="tab" tabindex="0" aria-selected="false" aria-controls="private-contacts"><i class="fas fa-user-friends"></i> Privados</div>
+            </div>
+            <div id="global-contacts" class="chat-contacts" role="list" aria-label="Contactos chat global">
+              <div class="chat-contact active" role="listitem" tabindex="0" aria-current="page" onclick="openChat('global-chat')" aria-label="Abrir chat General">
+                <div class="chat-contact-name"><i class="fas fa-users"></i> Chat General</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> Todas las instituciones</div>
+              </div>
+              <div class="chat-contact" role="listitem" tabindex="0" onclick="openChat('club-tecnologia')" aria-label="Abrir chat Club de Tecnología">
+                <div class="chat-contact-name"><i class="fas fa-laptop-code"></i> Club de Tecnología</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> UPC + TECSUP + PUCP</div>
+              </div>
+              <div class="chat-contact" role="listitem" tabindex="0" onclick="openChat('club-robotica')" aria-label="Abrir chat Club de Robótica">
+                <div class="chat-contact-name"><i class="fas fa-robot"></i> Club de Robótica</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> TECSUP + UNI</div>
+              </div>
+            </div>
+            <div id="private-contacts" class="chat-contacts" role="list" aria-label="Contactos chat privado" style="display: none;">
+              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario1')" aria-label="Abrir chat privado con Ana Pérez">
+                <div class="chat-contact-name"><i class="fas fa-user"></i> Ana Pérez</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> PUCP</div>
+              </div>
+              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario2')" aria-label="Abrir chat privado con Carlos Gómez">
+                <div class="chat-contact-name"><i class="fas fa-user"></i> Carlos Gómez</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> TECSUP</div>
+              </div>
+              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario3')" aria-label="Abrir chat privado con Luisa Martínez">
+                <div class="chat-contact-name"><i class="fas fa-user"></i> Luisa Martínez</div>
+                <div class="chat-contact-university"><i class="fas fa-university"></i> UPC</div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-main" role="region" aria-label="Ventana principal de chat">
+            <div class="chat-header" id="chat-header" tabindex="0"><i class="fas fa-comments"></i> Chat General</div>
+            <div class="chat-messages" id="chat-messages" tabindex="0" aria-live="polite" aria-relevant="additions"></div>
+            <div class="chat-input">
+              <input type="text" id="chat-input" placeholder="Escribe un mensaje..." aria-label="Campo para escribir mensajes" />
+              <button onclick="sendMessage()" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i> Enviar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="notes" tabindex="0" aria-label="Gestión y visualización de tus notas">
+        <h2><i class="fas fa-sticky-note" aria-hidden="true"></i> Mis Notas</h2>
+        <div class="notes-container">
+          <div class="note-form" aria-label="Formulario para agregar nueva nota">
+            <h3><i class="fas fa-plus-circle" aria-hidden="true"></i> Nueva Nota</h3>
+            <input type="text" id="note-title" placeholder="Título de la nota" class="note-input" aria-label="Título de la nota">
+            <textarea id="note-content" placeholder="Escribe tu nota aquí..." class="note-input" aria-label="Contenido de la nota"></textarea>
+            <button onclick="addNote()" class="btn-primary" aria-label="Guardar nota"><i class="fas fa-save"></i> Guardar Nota</button>
+          </div>
+          <h3 style="margin-top: 2rem; color:#5a2ab3;"><i class="fas fa-notes" aria-hidden="true"></i> Tus Notas</h3>
+          <div class="notes-list" id="notes-list" aria-live="polite" aria-label="Lista dinámica de notas guardadas"></div>
+        </div>
+      </section>
+      <section id="profile" tabindex="0" aria-label="Perfil de usuario y opciones de configuración">
+        <h2><i class="fas fa-user" aria-hidden="true"></i> Mi Perfil</h2>
+        <div class="profile-top" role="region" aria-label="Información del perfil">
+          <div class="profile-photo-wrapper" title="Subir o cambiar foto de perfil" tabindex="0" aria-haspopup="dialog" aria-label="Subir foto de perfil">
+            <img id="profile-photo-preview" alt="Foto de perfil del usuario" / src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/88ee552d-1ce7-47a9-9883-bb06b3ed4d0a.png">
+            <div id="profile-photo-placeholder"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
+            <label for="profile-photo-upload" id="profile-photo-label" tabindex="0" aria-label="Botón subir foto de perfil"><i class="fas fa-camera"></i></label>
+            <input type="file" accept="image/*" id="profile-photo-upload" aria-describedby="profile-photo-label" />
+          </div>
+          <div class="profile-info">
+            <h3 id="profile-name" aria-live="polite" aria-atomic="true">Cargando...</h3>
+            <p id="profile-institution" aria-live="polite" aria-atomic="true"><i class="fas fa-university"></i> Cargando...</p>
+          </div>
+        </div>
+        <div id="profile-clubs-box" aria-live="polite" aria-label="Clubs en los que participa el usuario">
+          <h3 style="color:#5a2ab3; margin-bottom:1rem; display:flex; align-items:center; gap:0.65rem;">
+            <i class="fas fa-users" aria-hidden="true"></i> Clubs Participantes
+          </h3>
+          <p id="profile-clubs" style="font-weight: 600;">Ninguno</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Pre-existing data for interclubs, interevents, chats remain unchanged
+    const interclubs = [
+      {
+        id: 1,
+        name: "Tecnología Avanzada",
+        description: "Club enfocado en las últimas tecnologías con miembros de TECSUP y UPC",
+        universities: ["TECSUP", "UPC"],
+        contact: "tecnologia.avanzada@example.com"
+      },
+      {
+        id: 2,
+        name: "Emprendimiento Interuniversitario",
+        description: "Para estudiantes emprendedores de todas las instituciones",
+        universities: ["UPC", "PUCP", "TECSUP", "USIL", "UNI"],
+        contact: "emprendimiento.inter@example.com"
+      },
+      {
+        id: 3,
+        name: "Robótica Colaborativa",
+        description: "Club de robótica con participación de TECSUP, UPC y UNI",
+        universities: ["TECSUP", "UPC", "UNI"],
+        contact: "robotica.colab@example.com"
+      },
+      {
+        id: 4,
+        name: "Ingeniería Industrial",
+        description: "Club técnico con participación de TECSUP, UNI y UPC",
+        universities: ["TECSUP", "UNI", "UPC"],
+        contact: "ing.industrial@example.com"
+      },
+      {
+        id: 5,
+        name: "Diseño y Creatividad",
+        description: "Club para diseñadores de todas las instituciones",
+        universities: ["PUCP", "UPC", "TECSUP", "USIL"],
+        contact: "diseno.creativo@example.com"
+      }
+    ];
+    const interevents = [
+      {
+        id: 1,
+        name: "Hackatón Interuniversitaria",
+        description: "Competencia de programación abierta a todas las universidades",
+        date: "15 Noviembre 2025",
+        location: "Campus UPC - Monterrico",
+        universities: ["UPC", "PUCP", "TECSUP", "UTP", "USIL"]
+      },
+      {
+        id: 2,
+        name: "Feria de Carreras Técnicas",
+        description: "Evento organizado por TECSUP con participación de otras instituciones",
+        date: "25 Noviembre 2025",
+        location: "Campus TECSUP - San Isidro",
+        universities: ["TECSUP", "UPC", "UTP", "UNI"]
+      },
+      {
+        id: 3,
+        name: "Simposio de Ingeniería",
+        description: "Evento académico con ponentes de múltiples universidades",
+        date: "5 Diciembre 2025",
+        location: "Auditorio PUCP",
+        universities: ["PUCP", "UPC", "TECSUP", "UNMSM"]
+      },
+      {
+        id: 4,
+        name: "ExpoTECSUP 2025",
+        description: "Evento anual de TECSUP abierto a todas las instituciones",
+        date: "10 Diciembre 2025",
+        location: "Campus TECSUP - San Isidro",
+        universities: ["TECSUP", "UPC", "PUCP", "UTP"]
+      },
+      {
+        id: 5,
+        name: "Olimpiadas de Programación",
+        description: "Competencia de programación para estudiantes técnicos",
+        date: "15 Enero 2026",
+        location: "Campus ULIMA",
+        universities: ["TECSUP", "UPC", "UTP", "ULIMA", "UNI"]
+      }
+    ];
+    const chatMessages = {
+      'global-chat': [
+        {
+          sender: 'Sistema',
+          content: 'Bienvenido al chat general de Collabu. ¡Conéctate con estudiantes de otras instituciones!',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ],
+      'club-tecnologia': [
+        {
+          sender: 'Sistema',
+          content: 'Bienvenido al chat del Club de Tecnología',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ],
+      'club-robotica': [
+        {
+          sender: 'Sistema',
+          content: 'Bienvenido al chat del Club de Robótica',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ],
+      'usuario1': [
+        {
+          sender: 'Ana Pérez',
+          content: 'Hola, ¿cómo estás?',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ],
+      'usuario2': [
+        {
+          sender: 'Carlos Gómez',
+          content: '¿Vas a asistir al evento de TECSUP?',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ],
+      'usuario3': [
+        {
+          sender: 'Luisa Martínez',
+          content: 'Nos vemos en el taller de programación',
+          time: '10:00 AM',
+          isCurrentUser: false
+        }
+      ]
+    };
+    // Global app state
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+    let currentChat = 'global-chat';
+    let currentChatType = 'global';
+    let profilePhotoDataUrl = localStorage.getItem('profilePhotoDataUrl') || null;
+
+    // Initialize app on page load
+    function initializeApp() {
+      if (currentUser) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('register-section').style.display = 'none';
+        document.getElementById('main-content').classList.remove('hidden');
+        updateProfile();
+        showSection('dashboard');
+      } else {
+        // Clear profile photo preview
+        resetProfilePhotoPreview();
+      }
+    }
+
+    // Section display handler
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('#main-content section');
+      sections.forEach(s => s.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+
+      const buttons = document.querySelectorAll('nav button');
+      buttons.forEach(b => b.classList.remove('active'));
+      const active = Array.from(buttons).find(btn => btn.textContent.toLowerCase().includes(sectionId));
+      if (active) active.classList.add('active');
+
+      if (sectionId === 'notes') loadNotes();
+      if (sectionId === 'network') {
+        loadInterclubs();
+        loadInterevents();
+      }
+      if (sectionId === 'chat') loadChat(currentChat);
+    }
+
+    // User registration & Login management
+    const registerForm = document.getElementById('register-form');
+    const registerSection = document.getElementById('register-section');
+    const loginSection = document.getElementById('login-section');
+    const loginForm = document.getElementById('login-form');
+    const mainContent = document.getElementById('main-content');
+    const errorMessage = document.getElementById('error-message');
+    const registerErrorMessage = document.getElementById('register-error-message');
+    const successMessage = document.getElementById('success-message');
+
+    document.getElementById('show-register').addEventListener('click', () => {
+      loginSection.style.display = 'none';
+      registerSection.style.display = 'flex';
+      errorMessage.textContent = '';
+      registerErrorMessage.textContent = '';
+      successMessage.textContent = '';
+      loginForm.reset();
+      registerForm.reset();
+      registerForm.querySelector('input').focus();
+    });
+    document.getElementById('show-login').addEventListener('click', () => {
+      registerSection.style.display = 'none';
+      loginSection.style.display = 'flex';
+      errorMessage.textContent = '';
+      registerErrorMessage.textContent = '';
+      successMessage.textContent = '';
+      loginForm.reset();
+      registerForm.reset();
+      loginForm.querySelector('input').focus();
+    });
+
+    function getUsers() {
+      const users = localStorage.getItem('collabuUsers');
+      return users ? JSON.parse(users) : [];
+    }
+    function saveUsers(users) {
+      localStorage.setItem('collabuUsers', JSON.stringify(users));
+    }
+    registerForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const username = document.getElementById('register-username').value.trim();
+      const password = document.getElementById('register-password').value;
+      const passwordConfirm = document.getElementById('register-password-confirm').value;
+      const university = document.getElementById('register-university').value;
+
+      if (!username || !password || !passwordConfirm || !university) {
+        registerErrorMessage.textContent = 'Por favor, completa todos los campos.';
+        return;
+      }
+      if (password !== passwordConfirm) {
+        registerErrorMessage.textContent = 'Las contraseñas no coinciden.';
+        return;
+      }
+      const users = getUsers();
+      if (users.some(u => u.username === username)) {
+        registerErrorMessage.textContent = 'El usuario ya existe.';
+        return;
+      }
+      users.push({ username, password, university, clubs: [] });
+      saveUsers(users);
+      successMessage.textContent = 'Registro exitoso. ¡Inicia sesión!';
+      registerForm.reset();
+      setTimeout(() => {
+        registerSection.style.display = 'none';
+        loginSection.style.display = 'flex';
+        successMessage.textContent = '';
+        loginForm.querySelector('input').focus();
+      }, 2200);
+    });
+
+    loginForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+      const users = getUsers();
+      const user = users.find(u => u.username === username && u.password === password);
+      if (!user) {
+        errorMessage.textContent = 'Usuario o contraseña incorrectos.';
+        return;
+      }
+      currentUser = user;
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      loginSection.style.display = 'none';
+      mainContent.classList.remove('hidden');
+      updateProfile();
+      showSection('dashboard');
+    });
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('profilePhotoDataUrl');
+      profilePhotoDataUrl = null;
+      mainContent.classList.add('hidden');
+      loginSection.style.display = 'flex';
+      loginForm.reset();
+      errorMessage.textContent = '';
+      resetProfilePhotoPreview();
+    }
+
+    // Update profile UI
+    function updateProfile() {
+      if (currentUser) {
+        document.getElementById('profile-name').textContent = currentUser.username;
+        document.getElementById('profile-institution').textContent = currentUser.university;
+        document.getElementById('profile-clubs').textContent = currentUser.clubs.length ? currentUser.clubs.join(', ') : 'Ninguno';
+        loadProfilePhoto();
+      }
+    }
+    // Load profile photo from localStorage or reset to placeholder
+    function loadProfilePhoto() {
+      const preview = document.getElementById('profile-photo-preview');
+      const placeholder = document.getElementById('profile-photo-placeholder');
+      if (profilePhotoDataUrl) {
+        preview.src = profilePhotoDataUrl;
+        preview.style.display = 'block';
+        placeholder.style.display = 'none';
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+        placeholder.style.display = 'flex';
+      }
+    }
+    // Reset preview photo
+    function resetProfilePhotoPreview() {
+      profilePhotoDataUrl = null;
+      loadProfilePhoto();
+    }
+    // Handler for profile photo upload
+    document.getElementById('profile-photo-upload').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          profilePhotoDataUrl = e.target.result;
+          localStorage.setItem('profilePhotoDataUrl', profilePhotoDataUrl);
+          loadProfilePhoto();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Por favor selecciona un archivo de imagen válido.');
+      }
+      event.target.value = ''; // Reset input
+    });
+
+    // Notes management
+    function getNotes() {
+      if (!currentUser) return [];
+      const notes = localStorage.getItem(`notes_${currentUser.username}`);
+      return notes ? JSON.parse(notes) : [];
+    }
+    function saveNotes(notes) {
+      if (currentUser) {
+        localStorage.setItem(`notes_${currentUser.username}`, JSON.stringify(notes));
+      }
+    }
+    function addNote() {
+      if (!currentUser) return;
+      const title = document.getElementById('note-title').value.trim();
+      const content = document.getElementById('note-content').value.trim();
+      if (!title || !content) return;
+      const notes = getNotes();
+      notes.push({
+        id: Date.now(),
+        title,
+        content,
+        date: new Date().toLocaleString()
+      });
+      saveNotes(notes);
+      document.getElementById('note-title').value = '';
+      document.getElementById('note-content').value = '';
+      loadNotes();
+    }
+    function deleteNote(id) {
+      if (!currentUser) return;
+      const notes = getNotes().filter(note => note.id !== id);
+      saveNotes(notes);
+      loadNotes();
+    }
+    function loadNotes() {
+      const notesList = document.getElementById('notes-list');
+      notesList.innerHTML = '';
+      const notes = getNotes();
+      if(notes.length === 0) {
+        notesList.innerHTML = '<p style="color: #777; font-style: italic; text-align: center;">No tienes notas guardadas aún.</p>';
+        return;
+      }
+      notes.forEach(note => {
+        const noteCard = document.createElement('div');
+        noteCard.className = 'note-card';
+        noteCard.innerHTML = `
+          <h4>${note.title}</h4>
+          <p>${note.content}</p>
+          <div class="note-date"><i class="far fa-calendar-alt" aria-hidden="true"></i> ${note.date}</div>
+          <button class="delete-note" aria-label="Eliminar nota titulada: ${note.title}" onclick="deleteNote(${note.id})"><i class="fas fa-times"></i></button>
+        `;
+        notesList.appendChild(noteCard);
+      });
+    }
+
+    // Load interclubs and events filtered by university
+    function loadInterclubs() {
+      const interclubsList = document.getElementById('interclubs-list');
+      interclubsList.innerHTML = '';
+      const filter = document.getElementById('filter-university').value;
+      const filteredClubs = filter === 'all' ? interclubs : interclubs.filter(club => club.universities.includes(filter));
+      if(filteredClubs.length === 0) {
+        interclubsList.innerHTML = '<p style="font-style: italic; text-align: center; color: #555;">No hay clubs para esta institución.</p>';
+        return;
+      }
+      filteredClubs.forEach(club => {
+        const card = document.createElement('div');
+        card.className = 'card interclub-card';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'article');
+        card.setAttribute('aria-label', `Club ${club.name}: ${club.description}, contacto ${club.contact}, universidades: ${club.universities.join(', ')}`);
+        card.innerHTML = `
+          <h3><i class="fas fa-users" aria-hidden="true"></i> ${club.name}</h3>
+          <p>${club.description}</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> Contacto: <a href="mailto:${club.contact}" style="color:#422cbfff;">${club.contact}</a></p>
+          <span class="university-badge" aria-label="Universidades participantes"><i class="fas fa-university" aria-hidden="true"></i> ${club.universities.join(', ')}</span>
+        `;
+        interclubsList.appendChild(card);
+      });
+    }
+    function loadInterevents() {
+      const intereventsList = document.getElementById('interevents-list');
+      intereventsList.innerHTML = '';
+      const filter = document.getElementById('filter-university').value;
+      const filteredEvents = filter === 'all' ? interevents : interevents.filter(event => event.universities.includes(filter));
+      if(filteredEvents.length === 0) {
+        intereventsList.innerHTML = '<p style="font-style: italic; text-align: center; color: #555;">No hay eventos para esta institución.</p>';
+        return;
+      }
+      filteredEvents.forEach(event => {
+        const card = document.createElement('div');
+        card.className = 'card interclub-card';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'article');
+        card.setAttribute('aria-label', `Evento ${event.name}: ${event.description}, fecha ${event.date}, lugar ${event.location}, universidades: ${event.universities.join(', ')}`);
+        card.innerHTML = `
+          <h3><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${event.name}</h3>
+          <p>${event.description}</p>
+          <p><i class="far fa-clock" aria-hidden="true"></i> Fecha: ${event.date}</p>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Lugar: ${event.location}</p>
+          <span class="university-badge" aria-label="Universidades participantes"><i class="fas fa-university" aria-hidden="true"></i> ${event.universities.join(', ')}</span>
+        `;
+        intereventsList.appendChild(card);
+      });
+    }
+    function filterClubs() {
+      loadInterclubs();
+      loadInterevents();
+    }
+
+    // Chat system handlers
+    function switchChatTab(tab) {
+      currentChatType = tab;
+      document.querySelectorAll('.chat-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+      });
+      const newTab = document.querySelector(`.chat-tab[onclick="switchChatTab('${tab}')"]`);
+      if(newTab) {
+        newTab.classList.add('active');
+        newTab.setAttribute('aria-selected', 'true');
+        newTab.setAttribute('tabindex', '0');
+        newTab.focus();
+      }
+      document.getElementById('global-contacts').style.display = tab === 'global' ? 'block' : 'none';
+      document.getElementById('private-contacts').style.display = tab === 'private' ? 'block' : 'none';
+      currentChat = tab === 'global' ? 'global-chat' : 'usuario1';
+      loadChat(currentChat);
+    }
+
+    function openChat(chatId) {
+      currentChat = chatId;
+      document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
+      const activeContact = document.querySelector(`.chat-contact[onclick="openChat('${chatId}')"]`);
+      if(activeContact) activeContact.classList.add('active');
+      loadChat(chatId);
+    }
+    function openPrivateChat(userId) {
+      currentChat = userId;
+      document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
+      const activeContact = document.querySelector(`.chat-contact[onclick="openPrivateChat('${userId}')"]`);
+      if(activeContact) activeContact.classList.add('active');
+      loadChat(userId);
+    }
+    function loadChat(chatId) {
+      const chatHeader = document.getElementById('chat-header');
+      const chatMessagesDiv = document.getElementById('chat-messages');
+      chatMessagesDiv.innerHTML = '';
+
+      let chatName = 'Chat General';
+      if (chatId === 'global-chat') chatName = 'Chat General';
+      else if (chatId === 'club-tecnologia') chatName = 'Club de Tecnología';
+      else if (chatId === 'club-robotica') chatName = 'Club de Robótica';
+      else {
+        const userEl = document.querySelector(`.chat-contact[onclick="openPrivateChat('${chatId}')"] .chat-contact-name`);
+        chatName = userEl ? userEl.textContent : 'Chat Privado';
+      }
+      chatHeader.innerHTML = `<i class="fas fa-comments" aria-hidden="true"></i> ${chatName}`;
+
+      if (!chatMessages[chatId]) chatMessages[chatId] = [];
+      chatMessages[chatId].forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${msg.isCurrentUser ? 'sent' : 'received'}`;
+        const senderIcon = msg.sender.toLowerCase().includes('sistema') ? 'fa-robot' : 'fa-user';
+        messageDiv.innerHTML = `
+          <div class="message-sender"><i class="fas ${senderIcon}" aria-hidden="true"></i> ${msg.sender}</div>
+          <div class="message-content">${msg.content}</div>
+          <div class="message-time">${msg.time}</div>
+        `;
+        chatMessagesDiv.appendChild(messageDiv);
+      });
+      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+    function sendMessage() {
+      if (!currentUser) return;
+      const input = document.getElementById('chat-input');
+      const content = input.value.trim();
+      if (!content) return;
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      if (!chatMessages[currentChat]) chatMessages[currentChat] = [];
+      chatMessages[currentChat].push({
+        sender: currentUser.username,
+        content,
+        time,
+        isCurrentUser: true
+      });
+      input.value = '';
+      loadChat(currentChat);
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeApp();
+      document.getElementById('chat-input').addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendMessage();
+      });
+      if (!chatMessages['global-chat'] || chatMessages['global-chat'].length === 0) {
+        chatMessages['global-chat'] = [{
+          sender: 'Sistema',
+          content: 'Bienvenido al chat general de Collabu. ¡Conéctate con estudiantes de otras instituciones!',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isCurrentUser: false
+        }];
+      }
+    });
+  </script>
+</body>
+</html>
+
