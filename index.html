@@ -3,991 +3,1196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Collabu - Comunidad Estudiantil Peruana</title>
+  <title>Collabu - Plataforma Centralizada para Estudiantes de Educacion Superior</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and base */
+    /* Reset y estilos base mejorados */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      background: linear-gradient(135deg, #5a42a6, #5abba6, #44d9e6);
-      font-family: 'Poppins', sans-serif;
-      color: #1f1f1f;
+      /* Fondo base con gradiente vibrante */
+      background: linear-gradient(to bottom, #6e45e2, #88d3ce);
+      color: #333;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
     }
-    /* Vibrant hero */
+    
+    /* Fondo tecnológico dinámico */
+    .tech-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Imagen de fondo sutil con temática tecnológica */
+      background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      opacity: 0.1; /* Opacidad baja para no saturar */
+      z-index: -1;
+    }
+
+    /* Nuevo fondo temático estudiantil para secciones internas */
+    .student-theme-bg {
+      position: absolute; /* Para superponerse dentro de la sección */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15; /* Sutil opacidad para que no abruma */
+      z-index: -1; /* Detrás del contenido de la sección */
+      border-radius: 16px; /* Para que coincida con el borde de la sección */
+      background-blend-mode: multiply; /* Para fusionarse con el color de fondo */
+    }
+    
+    /* Hero image */
     .hero-image {
       width: 100%;
       max-height: 280px;
       overflow: hidden;
-      border-bottom: 6px solid #2f2287;
+      border-bottom: 5px solid #fff;
       position: relative;
     }
     .hero-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.85);
-      transition: transform 0.6s ease;
+      transition: transform 0.5s ease;
     }
     .hero-image:hover img {
       transform: scale(1.05);
     }
-    .hero-overlay {
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
-      color: white;
-      text-shadow: 0 0 12px rgba(0,0,0,0.8);
-      font-weight: 700;
-      font-size: 1.8rem;
-      font-family: 'Poppins', sans-serif;
-      letter-spacing: 1.5px;
-    }
-    /* Logo stylized with shadow and spacing */
+    
+    /* Logo moderno */
     .logo-container {
       text-align: center;
-      margin: 2rem 0 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+      z-index: 1;
     }
     .logo {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: 3px;
-      text-shadow:
-        0 0 5px #8e73f5,
-        0 0 10px #9bb8f5,
-        0 0 20px #8e73f5,
-        0 0 30px #6851c9,
-        0 0 40px #5a3db0;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      user-select: none;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     .logo i {
-      font-size: 2.6rem;
-      color: #f0e6ff;
-      filter: drop-shadow(0 0 8px #6f54ed);
+      margin-right: 0.5rem;
     }
     .logo-subtitle {
-      color: #f0e6ff;
-      font-size: 1.3rem;
-      margin-top: 0.4rem;
-      font-weight: 600;
-      letter-spacing: 1.1px;
-      text-shadow: 0 0 4px rgba(0,0,0,0.3);
-      user-select: none;
-    }
-    /* Header */
-    header {
-      background: linear-gradient(90deg, #5a2ab3, #3e93bd);
       color: white;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    }
+    
+    /* Header mejorado */
+    header {
+      background: rgba(110, 69, 226, 0.9);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
       font-weight: 700;
       font-size: 2rem;
-      letter-spacing: 1.5px;
-      padding: 1.2rem 2rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      justify-content: center;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 2;
     }
-    header i {
-      font-size: 1.8rem;
-      color: #b9d1ff;
-      text-shadow: 0 0 6px #aabffe;
-    }
-    /* Navigation */
+    
+    /* Barra de navegación mejorada */
     nav {
-      background: #6626cccc;
+      background: rgba(125, 95, 255, 0.9);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
-      padding: 0.9rem 1rem;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.25);
-      user-select: none;
-      position: sticky;
-      top: 0;
-      z-index: 110;
-      backdrop-filter: saturate(180%) blur(10px);
-      border-radius: 0 0 24px 24px;
+      padding: 0.8rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 2;
     }
     nav button {
       background: transparent;
-      border: 2px solid transparent;
-      border-radius: 30px;
-      color: #e2ddfb;
+      border: none;
+      color: #fff;
       font-size: 1rem;
-      font-weight: 600;
-      padding: 0.7rem 1.6rem;
       cursor: pointer;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
       transition: all 0.3s ease;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 0 8px transparent;
-      user-select: none;
+      position: relative;
+      overflow: hidden;
     }
-    nav button i {
-      font-size: 1.15rem;
-      filter: drop-shadow(0 0 1.5px #b39dffcc);
-      transition: transform 0.3s ease;
+    nav button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    nav button:hover::before {
+      left: 100%;
     }
     nav button:hover, nav button.active {
-      background: #a084ff88;
-      border-color: #d2beff;
-      box-shadow: 0 6px 15px rgba(160,132,255,0.9);
-      color: white;
-      transform: translateY(-3px);
-    }
-    nav button:hover i, nav button.active i {
-      transform: scale(1.15);
-      color: #f5ebff;
-      filter: drop-shadow(0 0 6px #d7c6ff);
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
     nav button.logout-button {
       margin-left: auto;
-      background: #5600bbcc;
-      color: #f9f7ff;
-      border-color: #4a21b4cc;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px #5600bbbb;
+      background: #4a2db5;
     }
     nav button.logout-button:hover {
-      background: #3a0099cc;
-      box-shadow: 0 0 20px #39007bcc;
-      border-color: #28006a;
-      color: #fff;
+      background: #3a1da5;
     }
-    /* Main content */
+    
+    /* Contenido principal */
     main {
       flex-grow: 1;
       display: flex;
       justify-content: center;
-      padding: 2rem 2rem 4rem 2rem;
-      background: #f8faff;
-      overflow-y: auto;
-      user-select: text;
+      padding: 2rem;
+      /* Fondo semi-transparente para ver el tech-bg, con un toque azulado */
+      background: rgba(241, 243, 249, 0.7); 
+      position: relative;
+      z-index: 1;
     }
+    
+    /* Secciones mejoradas */
     section {
       display: none;
       max-width: 900px;
       width: 100%;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-      padding: 2.4rem 2.8rem;
+      /* Fondo base con transparencia y blur */
+      background-color: rgba(245, 247, 255, 0.9); /* Azul muy pálido con más transparencia */
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 2rem;
       overflow-y: auto;
-      max-height: 75vh;
-      animation: fadeInUp 0.7s ease forwards;
+      max-height: 70vh;
       position: relative;
+      backdrop-filter: blur(8px); /* Aumento del blur */
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil para el efecto de vidrio */
     }
     section.active {
       display: block;
+      animation: fadeIn 0.4s ease forwards;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(12px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Section titles */
+    
+    /* Títulos */
     h2 {
-      color: #5a2ab3;
-      margin-bottom: 1.8rem;
-      font-weight: 700;
+      color: #6e45e2;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
       position: relative;
-      padding-bottom: 0.7rem;
-      user-select: none;
-      font-size: 2.2rem;
-      letter-spacing: 0.5px;
+      padding-bottom: 0.5rem;
     }
     h2::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 80px;
-      height: 5px;
-      background: linear-gradient(90deg, #5a2ab3, #89d3d3);
-      border-radius: 8px;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, #6e45e2, #88d3ce);
+      border-radius: 3px;
     }
-    /* Cards grid */
+    
+    /* Tarjetas mejoradas */
     .card-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem 2.2rem;
+      gap: 1.5rem;
     }
-    /* Card style */
     .card {
-      background: linear-gradient(145deg, #e8efff, #d9e2ff);
-      border-radius: 18px;
-      padding: 1.8rem 1.8rem 2.2rem 1.8rem;
-      box-shadow: 0 6px 16px rgba(90, 42, 179, 0.15);
-      border-left: 8px solid #7b55ff;
+      /* Fondo con transparencia y blur, usando el matiz azulado */
+      background: rgba(245, 247, 255, 0.9); /* Más opaco para contenido */
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border-left: 5px solid #7d5fff;
       cursor: pointer;
-      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
       position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(110,69,226,0.05) 0%, rgba(136,211,206,0.05) 100%); /* Menos opaco */
+      z-index: 0;
     }
     .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 18px 40px rgba(108, 57, 255, 0.3);
-      border-left-color: #9e7bff;
-      background: linear-gradient(145deg, #f7f9ff, #e3eaff);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     }
     .card h3 {
-      color: #462f99;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 1.3rem;
+      color: #4a2db5;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      filter: drop-shadow(0 0 5px #b59aefaa);
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
     }
     .card h3 i {
-      font-size: 1.3rem;
-      color: #8e77f4;
-      filter: drop-shadow(0 0 6px #a691f7);
-      transition: color 0.3s ease;
-    }
-    .card:hover h3 i {
-      color: #ab95fb;
-      filter: drop-shadow(0 0 10px #b6a1fb);
-      transform: scale(1.12);
+      font-size: 1.2rem;
     }
     .card p {
-      color: #3a325a;
-      font-size: 1rem;
+      color: #555;
+      font-size: 0.95rem;
       line-height: 1.5;
-      flex-grow: 1;
+      position: relative;
+      z-index: 1;
     }
-    /* Interclub badges */
-    .university-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #5a2ab3;
-      color: #eee;
-      padding: 0.3rem 0.8rem;
-      border-radius: 28px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 0 16px #7b55ffcc;
-      user-select: none;
-      white-space: nowrap;
-    }
-    .university-badge i {
-      margin-right: 0.3rem;
-      color: #d2cfff;
-    }
-    /* Forms */
+    
+    /* Formularios mejorados */
     .form-container {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 15px 44px rgba(58, 30, 120, 0.14);
-      padding: 3rem 3.5rem;
-      max-width: 480px;
-      margin: 2rem auto 4rem;
+      /* Fondo con transparencia y blur, con el matiz azulado */
+      background-color: rgba(245, 247, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 2.5rem;
+      max-width: 450px;
+      width: 100%;
+      margin: 2rem auto;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      user-select: none;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
     }
+
+    .form-container .student-theme-bg {
+      border-radius: 16px; /* Asegura que la imagen de fondo se recorte con el contenedor */
+    }
+
     label {
-      font-weight: 600;
-      color: #362e7d;
-      font-size: 1.05rem;
-      margin-bottom: 0.6rem;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 0.5rem;
       display: block;
     }
     input[type="text"], 
     input[type="password"], 
     textarea,
-    select {
-      padding: 1.2rem 1.8rem;
-      border: 2px solid #bbb;
-      border-radius: 18px;
-      font-size: 1.1rem;
-      transition: border-color 0.3s ease;
+    select,
+    input[type="email"],
+    input[type="file"] {
+      padding: 0.9rem 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
       width: 100%;
       font-family: 'Poppins', sans-serif;
-      color: #271a66;
-      resize: vertical;
+      background: rgba(255,255,255,0.8); /* Campos de entrada ligeramente blancos */
     }
     input[type="text"]:focus, 
     input[type="password"]:focus, 
     textarea:focus,
-    select:focus {
-      border-color: #5a2ab3;
+    select:focus,
+    input[type="email"]:focus,
+    input[type="file"]:focus {
+      border-color: #6e45e2;
       outline: none;
-      box-shadow: 0 0 8px 3px rgba(90, 42, 179, 0.28);
+      box-shadow: 0 0 0 3px rgba(110, 69, 226, 0.2);
     }
-    textarea {
-      min-height: 140px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+    
+    /* Botones mejorados */
     button.btn-primary {
-      background: linear-gradient(135deg, #7b55ff, #5436cc);
+      background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
       color: white;
-      font-weight: 700;
-      font-size: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
       border: none;
-      border-radius: 28px;
+      border-radius: 10px;
       padding: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      box-shadow: 0 6px 18px rgba(123, 85, 255, 0.65);
-      user-select: none;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    button.btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+    button.btn-primary:hover::before {
+      left: 100%;
     }
     button.btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 34px rgba(132, 86, 253, 0.9);
-      background: linear-gradient(135deg, #9a7aff, #6b46ff);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(110, 69, 226, 0.3);
     }
-    /* Error and success messages */
+    
+    /* Mensajes */
     #error-message,
     #register-error-message {
-      color: #ff3d4a;
-      font-weight: 600;
+      color: #ff4757;
+      font-weight: 500;
       text-align: center;
-      padding: 1rem;
       margin-top: 1rem;
-      border-radius: 12px;
-      background: #ffe2e5;
-      user-select: none;
-      box-shadow: 0 0 12px #ff3d4a55;
+      padding: 0.8rem;
+      background: rgba(255, 71, 87, 0.1);
+      border-radius: 8px;
     }
     #success-message {
-      color: #28c76f;
-      font-weight: 600;
+      color: #2ed573;
+      font-weight: 500;
       text-align: center;
       margin-top: 1rem;
-      padding: 1rem;
-      background: #d3f9d8;
-      border-radius: 12px;
-      user-select: none;
-      box-shadow: 0 0 12px #54c57166;
+      padding: 0.8rem;
+      background: rgba(46, 213, 115, 0.1);
+      border-radius: 8px;
     }
-    /* Form links */
+    
+    /* Ocultar contenido principal hasta login */
+    #main-content.hidden {
+      display: none;
+    }
+    
+    /* Links para cambiar formulario */
     .form-link {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      color: #674efc;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #6e45e2;
       cursor: pointer;
       text-align: center;
-      font-weight: 600;
-      transition: color 0.3s;
-      user-select: none;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
     }
     .form-link:hover {
-      color: #4a2ab3;
+      color: #4a2db5;
       text-decoration: underline;
     }
-    /* Notes */
+    .form-link strong {
+      font-weight: 600;
+    }
+    
+    /* Notas mejoradas */
     .notes-container {
       margin-top: 2rem;
     }
     .notes-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2.4rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
     .note-card {
-      background: #f9faff;
-      border-radius: 18px;
-      padding: 1.8rem 2.2rem;
-      box-shadow: 0 6px 22px rgba(90, 42, 179, 0.1);
-      border-left: 8px solid #8056ff;
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid #7d5fff;
       position: relative;
-      transition: transform 0.3s ease;
-      user-select: text;
+      transition: transform 0.3s;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     .note-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 46px rgba(110, 70, 255, 0.35);
-      border-left-color: #a382ff;
-      background: #f3f6ff;
+      transform: translateY(-3px);
     }
     .note-card h4 {
-      color: #5436cc;
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-      font-weight: 700;
+      color: #4a2db5;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
     }
     .note-card p {
-      color: #362e7d;
-      line-height: 1.6;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      white-space: pre-wrap;
-      word-break: break-word;
+      margin-bottom: 0.8rem;
+      color: #555;
+      line-height: 1.5;
     }
-    .note-date {
-      font-size: 0.85rem;
-      color: #acacac;
+    .note-card .note-date {
+      font-size: 0.8rem;
+      color: #888;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      user-select: none;
+      gap: 0.3rem;
     }
-    .note-date i {
-      color: #7b69f7;
-    }
-    .delete-note {
+    .note-card .delete-note {
       position: absolute;
-      top: 1.1rem;
-      right: 1.1rem;
-      background: #f73859;
+      top: 1rem;
+      right: 1rem;
+      background: #ff4757;
       color: white;
       border: none;
       border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      font-size: 1rem;
+      width: 25px;
+      height: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(247, 56, 89, 0.7);
-      transition: background 0.3s ease;
-      user-select: none;
+      transition: background 0.2s;
     }
-    .delete-note:hover {
-      background: #e31e3a;
+    .note-card .delete-note:hover {
+      background: #e84118;
     }
-    /* Chat system */
+    .note-form {
+      margin-top: 1.5rem;
+      background: rgba(245, 247, 255, 0.8); /* Más transparencia, usando el matiz azulado */
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .note-form h3 {
+      color: #4a2db5;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .note-form textarea {
+      width: 100%;
+      min-height: 120px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.9); /* Ligeramente blanco */
+    }
+    
+    /* Selector de universidad mejorado */
+    .university-selector {
+      margin-top: 1rem;
+    }
+    .university-selector select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1em;
+      background-color: rgba(255,255,255,0.9); /* Ligeramente blanco */
+    }
+    
+    /* Filtro de universidad */
+    .university-filter {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: rgba(245, 247, 255, 0.8); /* Más transparencia, usando el matiz azulado */
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .university-filter select {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.9); /* Ligeramente blanco */
+    }
+    
+    /* Tarjetas interinstitucionales */
+    .interclub-card {
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    .interclub-card .university-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #6e45e2;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    /* Sistema de chat mejorado */
     .chat-container {
       display: flex;
-      height: 520px;
-      border-radius: 20px;
+      height: 500px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
       overflow: hidden;
-      background: white;
-      box-shadow: 0 10px 38px rgba(90, 42, 179, 0.15);
-      user-select: none;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .chat-sidebar {
-      width: 320px;
-      background: linear-gradient(160deg, #6a4fffdd, #396ef0cc);
-      color: white;
+      width: 280px;
+      background: rgba(230, 235, 250, 0.9); /* Más oscuro para diferenciar, azulado */
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      border-right: 3px solid #3a27a4;
-      transition: background 0.4s ease;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
-    .chat-sidebar::-webkit-scrollbar {
-      width: 5px;
-    }
-    .chat-sidebar::-webkit-scrollbar-thumb {
-      background-color: rgba(150, 150, 255, 0.45);
-      border-radius: 12px;
-    }
-    .chat-tabs {
+    .chat-main {
+      flex-grow: 1;
       display: flex;
-      border-bottom: 2.5px solid #5747deaa;
-      background: #3d31b4cc;
+      flex-direction: column;
+      background: rgba(255,255,255,0.95);
     }
-    .chat-tab {
-      flex: 1;
-      cursor: pointer;
-      padding: 1rem;
-      font-weight: 700;
-      text-align: center;
-      font-size: 1.1rem;
-      letter-spacing: 0.8px;
-      color: #c6c6ffcc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.6rem;
-      transition: all 0.3s ease;
-      user-select: none;
-    }
-    .chat-tab i {
-      font-size: 1.3rem;
-      filter: drop-shadow(0 0 6px #7c78ff);
-    }
-    .chat-tab.active {
-      background: #6a4fff;
+    .chat-header {
+      padding: 1.2rem;
+      background: #6e45e2;
       color: white;
-      box-shadow: inset 0 0 15px #a292ff;
-      letter-spacing: 1.2px;
-      user-select: text;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .chat-tab:hover:not(.active) {
-      background: #5139c9cc;
-      color: #d4cef8cc;
+    .chat-messages {
+      flex-grow: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.95); /* Fondo de mensajes, ligeramente blanco */
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .message {
+      max-width: 75%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      position: relative;
+      animation: messageIn 0.3s ease;
+    }
+    @keyframes messageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message.sent {
+      background: rgba(230, 247, 255, 0.9); /* Mensajes enviados, azul muy claro */
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+    .message.received {
+      background: rgba(245, 245, 245, 0.9); /* Mensajes recibidos, gris muy claro */
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+    }
+    .message-sender {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #6e45e2;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .message-time {
+      font-size: 0.75rem;
+      color: #888;
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
+      border-top: 1px solid #ddd;
+      gap: 0.5rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .chat-input input {
+      flex-grow: 1;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      background: rgba(255,255,255,0.9); /* Ligeramente blanco */
+    }
+    .chat-input input:focus {
+      border-color: #6e45e2;
+      outline: none;
+    }
+    .chat-input button {
+      background: #6e45e2;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .chat-input button:hover {
+      background: #5a36c7;
     }
     .chat-contacts {
       flex-grow: 1;
       overflow-y: auto;
     }
     .chat-contact {
-      padding: 1rem 1.2rem;
-      border-bottom: 1px solid #5748ff33;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
       cursor: pointer;
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: all 0.3s;
       display: flex;
       flex-direction: column;
-      gap: 0.15rem;
-      user-select: none;
+      background: rgba(255,255,255,0.8); /* Ligeramente blanco */
     }
     .chat-contact:hover {
-      background: #6a5efd55;
-      box-shadow: inset 0 0 10px #9a84ff99;
+      background: rgba(230, 247, 255, 0.9); /* Azul muy claro al hover */
     }
     .chat-contact.active {
-      background: #8a72ff;
-      color: white;
-      box-shadow: inset 0 0 25px #c3b7ffbb;
-      user-select: text;
-    }
-    .chat-contact-name {
-      font-weight: 700;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      color: inherit;
-    }
-    .chat-contact-name i {
-      font-size: 1.2rem;
-      color: #ccc6ffcc;
-      filter: drop-shadow(0 0 4px #9d9affcc);
-      transition: color 0.3s ease;
-    }
-    .chat-contact.active .chat-contact-name i {
-      color: #e0dcff;
-      filter: drop-shadow(0 0 7px #c9c5ff);
-    }
-    .chat-contact-university {
-      font-size: 0.85rem;
-      color: #d6d3ffcc;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-weight: 500;
-      user-select: none;
-    }
-    .chat-contact.active .chat-contact-university {
+      background: #6e45e2;
       color: white;
     }
-    .chat-contact-university i {
-      color: #bbbbffcc;
-    }
-    /* Chat main */
-    .chat-main {
-      flex-grow: 1;
+    .chat-tabs {
       display: flex;
-      flex-direction: column;
-      background: white;
-      border-radius: 0 20px 20px 0;
-      user-select: text;
+      border-bottom: 1px solid #ddd;
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
     }
-    .chat-header {
-      padding: 1.3rem 1.7rem;
-      background: linear-gradient(90deg, #6c4fff, #3659f0);
-      color: white;
-      font-weight: 700;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      border-radius: 0 20px 0 0;
-      user-select: none;
-      box-shadow: 0 0 16px #8e81ffcc;
-    }
-    .chat-header i {
-      font-size: 1.6rem;
-      filter: drop-shadow(0 0 14px #a285ffcc);
-    }
-    .chat-messages {
-      flex-grow: 1;
-      padding: 2rem 2.5rem;
-      overflow-y: auto;
-      background: #f4f6ff;
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-    .chat-messages::-webkit-scrollbar {
-      width: 6px;
-    }
-    .chat-messages::-webkit-scrollbar-thumb {
-      background-color: #6b59ffbb;
-      border-radius: 20px;
-    }
-    .message {
-      max-width: 70%;
-      padding: 1rem 1.6rem;
-      border-radius: 20px;
-      position: relative;
-      animation: messageIn 0.3s ease;
-      box-shadow: 0 3px 12px rgba(84, 52, 255, 0.18);
-      font-size: 1rem;
-      line-height: 1.4;
-      word-wrap: break-word;
-      user-select: text;
-    }
-    @keyframes messageIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .message.sent {
-      background: #a9abfc;
-      margin-left: auto;
-      border-bottom-right-radius: 5px;
-      color: #321eaa;
-      box-shadow: 0 6px 25px rgba(84, 52, 255, 0.5);
-    }
-    .message.received {
-      background: white;
-      margin-right: auto;
-      border-bottom-left-radius: 5px;
-      color: #3b3471;
-    }
-    .message-sender {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #4f42b6;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      user-select: none;
-    }
-    .message-sender i {
-      font-size: 1.1rem;
-      filter: drop-shadow(0 0 5px #7a77f7);
-      color: #7d78ff;
-    }
-    .message-time {
-      font-size: 0.75rem;
-      color: #9a9fc2;
-      text-align: right;
-      margin-top: 0.4rem;
-      user-select: none;
-    }
-    /* Chat input */
-    .chat-input {
-      display: flex;
-      padding: 1.2rem 2.5rem 1.1rem;
-      background: #eaeaff;
-      border-radius: 0 0 20px 20px;
-      border-top: 1px solid #cbcaff;
-      gap: 1rem;
-      user-select: none;
-    }
-    .chat-input input {
-      flex-grow: 1;
-      padding: 0.85rem 1.4rem;
-      border: 2px solid transparent;
-      border-radius: 40px;
-      font-size: 1.1rem;
-      font-family: 'Poppins', sans-serif;
-      color: #352972;
-      transition: border-color 0.3s ease;
-      user-select: text;
-    }
-    .chat-input input:focus {
-      border-color: #5a2ab3;
-      outline: none;
-      box-shadow: 0 0 10px 3px rgba(90, 42, 179, 0.3);
-    }
-    .chat-input button {
-      background: #713bf3;
-      color: white;
-      border: none;
-      border-radius: 40px;
-      padding: 0 1.8rem;
+    .chat-tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
       cursor: pointer;
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-weight: 600;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      box-shadow: 0 2px 8px #5d32d4;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
+      justify-content: center;
+      gap: 0.5rem;
     }
-    .chat-input button i {
-      font-size: 1.4rem;
+    .chat-tab.active {
+      background: #6e45e2;
+      color: white;
     }
-    .chat-input button:hover {
-      background: #6a29f6;
-      box-shadow: 0 3px 18px #793ffb;
+    
+    /* Llamadas */
+    .call-container {
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-    /* Profile */
-    #profile {
-      user-select: none;
-    }
-    #profile .profile-top {
+    .call-header {
+      padding: 1.2rem;
+      background: #6e45e2;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      gap: 1.3rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-      user-select: text;
+      justify-content: center;
+      gap: 0.5rem;
     }
-    #profile .profile-photo-wrapper {
+    .call-video {
+      flex-grow: 1;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .call-video video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .call-controls {
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(245, 247, 255, 0.9); /* Usando el matiz azulado */
+      border-top: 1px solid #ddd;
+      gap: 1rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .call-controls button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: #6e45e2;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .call-controls button:hover {
+      transform: scale(1.1);
+    }
+    .call-controls button.end-call {
+      background: #ff4757;
+    }
+    
+    /* Perfil mejorado */
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .profile-avatar {
       position: relative;
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      box-shadow: 0 0 16px rgba(90, 42, 179, 0.6);
       overflow: hidden;
       cursor: pointer;
-      border: 5px solid #ab95fb;
-      background: linear-gradient(135deg, #7b55ff, #5e35b1);
-      transition: box-shadow 0.3s ease;
+      border: 3px solid #6e45e2;
+      box-shadow: 0 4px 15px rgba(110,69,226,0.3);
     }
-    #profile .profile-photo-wrapper:hover {
-      box-shadow: 0 0 28px rgba(135, 99, 243, 0.85);
-    }
-    #profile-photo-preview {
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      transition: transform 0.35s ease;
     }
-    #profile-photo-placeholder {
-      color: #dedefe;
-      font-size: 4.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-      background: #876fff22;
-    }
-    #profile .profile-info h3 {
-      color: #4a2db5;
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 0.6rem;
-    }
-    #profile .profile-info p {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      color: #4836a1;
-      font-size: 1.1rem;
-      font-weight: 600;
-      user-select: none;
-    }
-    #profile .profile-info p i {
-      color: #8b79f9;
-      font-size: 1.3rem;
-    }
-    #profile-clubs-box {
-      background: #e9ebfa;
-      border-radius: 22px;
-      padding: 2rem 2.4rem;
-      box-shadow: 0 6px 24px rgba(90, 42, 179, 0.12);
-      color: #3c2e9b;
-      font-weight: 600;
-      font-size: 1.1rem;
-      user-select: text;
-      user-drag: none;
-    }
-    /* Profile Photo Upload */
-    #profile-photo-upload {
-      display: none;
-    }
-    #profile-photo-label {
+    .profile-avatar .change-avatar {
       position: absolute;
-      bottom: 8px;
-      right: 6px;
-      background: #5a2ab3;
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 0 16px #7a6affcc;
-      transition: background 0.3s ease;
-      user-select: none;
-    }
-    #profile-photo-label i {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
       color: white;
-      font-size: 1.3rem;
-      user-select: none;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-    #profile-photo-label:hover {
-      background: #7b55ff;
-      box-shadow: 0 0 24px #a282ffcc;
+    .profile-avatar:hover .change-avatar {
+      opacity: 1;
+    }
+    .profile-info {
+      flex-grow: 1;
+    }
+    .profile-name {
+      color: #4a2db5;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .profile-university {
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .profile-edit {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .profile-edit button {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      background: #6e45e2;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .profile-edit button:hover {
+      background: #5a36c7;
+    }
+    .profile-section {
+      background: rgba(245, 247, 255, 0.8); /* Usando el matiz azulado */
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    .profile-section h3 {
+      color: #4a2db5;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
-    /* University selector style */
-    .university-selector select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 1.3rem center;
-      background-size: 1.1rem;
-      padding-right: 2.8rem;
-      color: #5436cc;
-      font-weight: 600;
-      border-radius: 16px;
-      border: 2px solid #8a7bff;
-      transition: all 0.3s ease;
-    }
-    .university-selector select:focus {
-      border-color: #6a4fff;
-      box-shadow: 0 0 8px 2px #8a7bffcc;
-      outline: none;
-      color: #4b33b7;
-    }
-    /* Fade transitions for form changes */
-    .fade-enter {
+    /* Avatar selector */
+    .avatar-selector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      visibility: hidden;
+      transition: all 0.3s;
     }
-    .fade-enter-active {
+    .avatar-selector.active {
       opacity: 1;
-      transform: translateY(0);
+      visibility: visible;
     }
-    /* Responsive improvements */
-    @media (max-width: 900px) {
-      main {
-        padding: 1.6rem 1.6rem 3rem 1.6rem;
-      }
-      section {
-        max-height: 70vh;
-      }
+    .avatar-selector-content {
+      background: rgba(245, 247, 255, 0.95); /* Usando el matiz azulado */
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      backdrop-filter: blur(10px); /* Más blur para el modal */
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.5);
     }
-    @media (max-width: 680px) {
-      nav {
-        gap: 0.8rem;
-        padding: 0.6rem 1rem;
-      }
-      nav button {
-        font-size: 0.88rem;
-        padding: 0.55rem 1rem;
-      }
-      .card-list {
-        grid-template-columns: 1fr;
-        gap: 1.8rem;
-      }
-      section {
-        max-height: 65vh;
-        padding: 2rem 2rem 2.5rem 2rem;
-      }
-      .form-container {
-        padding: 2rem 2rem 3rem 2rem;
-        max-width: 100%;
-      }
-      .chat-container {
-        height: 420px;
+    .avatar-selector-title {
+      color: #4a2db5;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .avatar-option {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .avatar-option:hover {
+      transform: scale(1.05);
+      border-color: #6e45e2;
+    }
+    .avatar-option.selected {
+      border-color: #6e45e2;
+      box-shadow: 0 0 0 3px rgba(110,69,226,0.3);
+    }
+    .avatar-option img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .avatar-selector-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .avatar-selector-buttons button {
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+    .avatar-selector-buttons button.confirm {
+      background: #6e45e2;
+      color: white;
+    }
+    .avatar-selector-buttons button.confirm:hover {
+      background: #5a36c7;
+    }
+    .avatar-selector-buttons button.cancel {
+      background: #f5f5f5;
+      color: #555;
+    }
+    .avatar-selector-buttons button.cancel:hover {
+      background: #e5e5e5;
+    }
+    
+    /* Barra de menú lateral */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(245, 247, 255, 0.95); /* Usando el matiz azulado */
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px); /* Más blur para el sidebar */
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255,255,255,0.5);
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .sidebar-header {
+      padding: 1.5rem;
+      background: #6e45e2;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-header h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .sidebar-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .sidebar-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    .sidebar-menu {
+      list-style: none;
+    }
+    .sidebar-menu li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      color: #555;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background: rgba(245, 247, 255, 0.7); /* Menos opaco para el hover, azulado */
+      color: #6e45e2;
+    }
+    .sidebar-menu a i {
+      width: 20px;
+      text-align: center;
+    }
+    .sidebar-footer {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+      text-align: center;
+    }
+    .menu-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: #6e45e2;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+    .menu-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Overlay para menú */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .chat-container, .call-container {
         flex-direction: column;
+        height: 70vh;
       }
       .chat-sidebar {
         width: 100%;
-        height: 160px;
         border-right: none;
-        border-bottom: 3px solid #3a27a4;
-        flex-direction: row;
-        overflow-x: auto;
+        border-bottom: 1px solid #ddd;
       }
-      .chat-sidebar::-webkit-scrollbar {
-        height: 6px;
+      nav {
+        gap: 0.5rem;
+        padding: 0.5rem;
       }
-      .chat-contacts {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        background: transparent;
-        border-top: none;
+      nav button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
       }
-      .chat-contact {
-        min-width: 140px;
-        flex: none;
-        border: none;
-        border-right: 1.5px solid #5748ff33;
-        border-radius: 0 20px 20px 0;
-        padding: 0.7rem 1rem;
-        margin-right: 0.6rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+      section {
+        padding: 1.5rem;
       }
-      .chat-contact:last-child {
-        margin-right: 0;
-        border-right: none;
-        border-radius: 0 20px 20px 20px;
+      .card-list {
+        grid-template-columns: 1fr;
       }
-      .chat-main {
-        height: calc(100% - 160px);
-        border-radius: 0 0 20px 20px;
+      .profile-header {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 250px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Hero section with overlay text -->
-  <div class="hero-image">
-    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c85fa06f-5a77-41b2-abff-da542e5ebd73.png" alt="Imagen vibrante mostrando estudiantes de diferentes universidades peruanas unidos y colaborando en un entorno dinámico y juvenil" />
-    <div class="hero-overlay">¡Unidos por la Educación Superior Peruana!</div>
+  <div class="tech-bg"></div>
+
+  <div class="menu-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
   </div>
-  
-  <!-- Logo y título -->
-  <div class="logo-container" aria-label="Logo de Collabu con icono de birrete y texto">
-    <div class="logo" tabindex="0"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Collabu</div>
-    <div class="logo-subtitle" tabindex="0">Comunidad Estudiantil Peruana | Unión y Crecimiento</div>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h3><i class="fas fa-graduation-cap"></i> Collabu</h3>
+      <button class="sidebar-close" onclick="toggleSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="sidebar-content">
+      <ul class="sidebar-menu">
+        <li><a href="#" onclick="showSection('dashboard')" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="#" onclick="showSection('clubs')"><i class="fas fa-users"></i> Clubs</a></li>
+        <li><a href="#" onclick="showSection('activities')"><i class="fas fa-star"></i> Actividades</a></li>
+        <li><a href="#" onclick="showSection('collaborations')"><i class="fas fa-handshake"></i> Colaboraciones</a></li>
+        <li><a href="#" onclick="showSection('network')"><i class="fas fa-network-wired"></i> Red Interinstitucional</a></li>
+        <li><a href="#" onclick="showSection('chat')"><i class="fas fa-comments"></i> Chat</a></li>
+        <li><a href="#" onclick="showSection('social')"><i class="fas fa-share-alt"></i> Red Social</a></li>
+        <li><a href="#" onclick="showSection('calls')"><i class="fas fa-phone"></i> Llamadas</a></li>
+        <li><a href="#" onclick="showSection('notes')"><i class="fas fa-sticky-note"></i> Mis Notas</a></li>
+        <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Mi Perfil</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <button onclick="logout()" class="btn-primary" style="width: 100%;">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
+    </div>
+  </div>
+  <div class="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="hero-image" id="login-hero">
+    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc" alt="Estudiantes colaborando">
   </div>
 
-  <!-- LOGIN -->
+  <div class="logo-container">
+    <div class="logo"><i class="fas fa-graduation-cap"></i>Collabu</div>
+    <div class="logo-subtitle">Plataforma Centralizada informativa y de interacción para Estudiantes de Educacion superior</div>
+  </div>
+
   <section id="login-section" class="form-container active" aria-label="Sección de inicio de sesión">
-    <h2><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Iniciar sesión</h2>
+    <div class="student-theme-bg"></div> <h2><i class="fas fa-sign-in-alt"></i> Iniciar sesión</h2>
     <form id="login-form" novalidate>
-      <label for="login-username"><i class="fas fa-user" aria-hidden="true"></i> Usuario</label>
-      <input type="text" id="login-username" name="username" placeholder="Tu usuario" autocomplete="username" required autofocus />
-      <label for="login-password"><i class="fas fa-lock" aria-hidden="true"></i> Contraseña</label>
-      <input type="password" id="login-password" name="password" placeholder="Tu contraseña" autocomplete="current-password" required />
-      <button type="submit" class="btn-primary"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Ingresar</button>
+      <label for="login-username"><i class="fas fa-user"></i> Usuario</label>
+      <input type="text" id="login-username" name="username" placeholder="Tu usuario" required autofocus />
+      <label for="login-password"><i class="fas fa-lock"></i> Contraseña</label>
+      <input type="password" id="login-password" name="password" placeholder="Tu contraseña" required />
+      <button type="submit" class="btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
       <div id="error-message" aria-live="polite"></div>
     </form>
-    <div class="form-link" id="show-register" role="button" tabindex="0" aria-label="Cambiar a formulario de registro">¿No tienes cuenta? <strong>Regístrate</strong></div>
+    <div class="form-link" id="show-register">¿No tienes cuenta? <strong>Regístrate</strong></div>
   </section>
 
-  <!-- REGISTER -->
   <section id="register-section" class="form-container" aria-label="Sección de registro de nuevos usuarios" style="display:none;">
-    <h2><i class="fas fa-user-plus" aria-hidden="true"></i> Crear cuenta</h2>
+    <div class="student-theme-bg"></div> <h2><i class="fas fa-user-plus"></i> Crear cuenta</h2>
     <form id="register-form" novalidate>
-      <label for="register-username"><i class="fas fa-user" aria-hidden="true"></i> Usuario</label>
-      <input type="text" id="register-username" name="username" placeholder="Elige un usuario" autocomplete="username" required autofocus />
-      <label for="register-password"><i class="fas fa-lock" aria-hidden="true"></i> Contraseña</label>
-      <input type="password" id="register-password" name="password" placeholder="Tu contraseña" autocomplete="new-password" required />
-      <label for="register-password-confirm"><i class="fas fa-lock" aria-hidden="true"></i> Confirmar contraseña</label>
-      <input type="password" id="register-password-confirm" name="passwordConfirm" placeholder="Confirma tu contraseña" autocomplete="new-password" required />
+      <label for="register-username"><i class="fas fa-user"></i> Usuario</label>
+      <input type="text" id="register-username" name="username" placeholder="Elige un usuario" required autofocus />
+      <label for="register-password"><i class="fas fa-lock"></i> Contraseña</label>
+      <input type="password" id="register-password" name="password" placeholder="Tu contraseña" required />
+      <label for="register-password-confirm"><i class="fas fa-lock"></i> Confirmar contraseña</label>
+      <input type="password" id="register-password-confirm" name="passwordConfirm" placeholder="Confirma tu contraseña" required />
       <div class="university-selector">
-        <label for="register-university"><i class="fas fa-university" aria-hidden="true"></i> Universidad</label>
-        <select id="register-university" name="university" required aria-required="true">
+        <label for="register-university"><i class="fas fa-university"></i> Universidad</label>
+        <select id="register-university" name="university" required>
           <option value="" disabled selected>Selecciona tu universidad</option>
           <option value="UPC">Universidad Peruana de Ciencias Aplicadas (UPC)</option>
           <option value="PUCP">Pontificia Universidad Católica del Perú (PUCP)</option>
@@ -999,99 +1204,68 @@
           <option value="UNI">Universidad Nacional de Ingeniería (UNI)</option>
         </select>
       </div>
-      <button type="submit" class="btn-primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Registrarse</button>
+      <button type="submit" class="btn-primary"><i class="fas fa-user-plus"></i> Registrarse</button>
       <div id="register-error-message" aria-live="polite"></div>
-      <div id="success-message" aria-live="polite"></div>
+      <div id="success-message"></div>
     </form>
-    <div class="form-link" id="show-login" role="button" tabindex="0" aria-label="Cambiar a formulario de inicio de sesión">¿Ya tienes cuenta? <strong>Inicia sesión</strong></div>
+    <div class="form-link" id="show-login">¿Ya tienes cuenta? <strong>Inicia sesión</strong></div>
   </section>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <div id="main-content" class="hidden" aria-live="polite" aria-label="Contenido principal de la aplicación">
-    <header><i class="fas fa-graduation-cap" aria-hidden="true"></i> Collabu</header>
-    <nav>
-      <button class="active" onclick="showSection('dashboard')" aria-label="Mostrar dashboard"><i class="fas fa-home" aria-hidden="true"></i> Dashboard</button>
-      <button onclick="showSection('clubs')" aria-label="Mostrar clubs"><i class="fas fa-users" aria-hidden="true"></i> Clubs</button>
-      <button onclick="showSection('activities')" aria-label="Mostrar actividades"><i class="fas fa-star" aria-hidden="true"></i> Actividades</button>
-      <button onclick="showSection('collaborations')" aria-label="Mostrar colaboraciones"><i class="fas fa-handshake" aria-hidden="true"></i> Colaboraciones</button>
-      <button onclick="showSection('network')" aria-label="Mostrar red interinstitucional"><i class="fas fa-network-wired" aria-hidden="true"></i> Red Interinstitucional</button>
-      <button onclick="showSection('chat')" aria-label="Mostrar chat"><i class="fas fa-comments" aria-hidden="true"></i> Chat</button>
-      <button onclick="showSection('notes')" aria-label="Mostrar notas"><i class="fas fa-sticky-note" aria-hidden="true"></i> Mis Notas</button>
-      <button onclick="showSection('profile')" aria-label="Mostrar perfil"><i class="fas fa-user" aria-hidden="true"></i> Mi Perfil</button>
-      <button onclick="logout()" class="logout-button" aria-label="Cerrar sesión"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Cerrar sesión</button>
-    </nav>
+  <div id="main-content" class="hidden">
+    <header><i class="fas fa-graduation-cap"></i> Collabu</header>
+
     <main>
-      <section id="dashboard" class="active" tabindex="0" aria-label="Dashboard principal">
-        <h2><i class="fas fa-home" aria-hidden="true"></i> Bienvenido a Collabu</h2>
-        <p style="font-size:1.2rem; font-weight: 600;">Explora clubes y actividades extracurriculares y conecta con estudiantes de todo el Perú.</p>
-        <h3><i class="fas fa-trophy" aria-hidden="true"></i> Clubs Destacados</h3>
-        <div class="card-list" aria-live="polite" aria-label="Lista de clubes destacados">
-          <div class="card" tabindex="0" aria-describedby="club-ciencia-desc" role="button">
-            <h3><i class="fas fa-flask" aria-hidden="true"></i> Club de Ciencia</h3>
-            <p id="club-ciencia-desc">Únete a nosotros para explorar el mundo de la ciencia y el conocimiento.</p>
+      <section id="dashboard" class="active">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-home"></i> Dashboard</h2>
+        <div class="welcome-banner" style="background: linear-gradient(to right, #6e45e2, #88d3ce); color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <h3 style="font-size: 2rem; margin-bottom: 0.5rem;"><i class="fas fa-hand-sparkles"></i> ¡Bienvenido a Collabu, <span id="dashboard-username"></span>!</h3>
+          <p style="font-size: 1.1rem; opacity: 0.9;">Tu plataforma centralizada para el éxito académico y la conexión universitaria.</p>
+        </div>
+        <div class="card-list">
+          <div class="card">
+            <h3><i class="fas fa-users"></i> Mis Clubs</h3>
+            <p>Explora y únete a clubs estudiantiles.</p>
+            <button class="btn-primary" style="margin-top: 1rem; width: 100%;" onclick="showSection('clubs')"><i class="fas fa-arrow-right"></i> Ir a Clubs</button>
           </div>
-          <div class="card" tabindex="0" aria-describedby="club-deportes-desc" role="button">
-            <h3><i class="fas fa-running" aria-hidden="true"></i> Club de Deportes</h3>
-            <p id="club-deportes-desc">Participa en actividades deportivas y mejora tu salud y amistad.</p>
+          <div class="card">
+            <h3><i class="fas fa-star"></i> Próximas Actividades</h3>
+            <p>Descubre eventos y talleres.</p>
+            <button class="btn-primary" style="margin-top: 1rem; width: 100%;" onclick="showSection('activities')"><i class="fas fa-arrow-right"></i> Ver Actividades</button>
           </div>
-          <div class="card" tabindex="0" aria-describedby="club-tec-desc" role="button">
-            <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Club de Tecnología</h3>
-            <p id="club-tec-desc">Explora innovaciones tecnológicas con estudiantes de TECSUP, UPC y PUCP.</p>
+          <div class="card">
+            <h3><i class="fas fa-comments"></i> Chat Rápido</h3>
+            <p>Conéctate con tus compañeros al instante.</p>
+            <button class="btn-primary" style="margin-top: 1rem; width: 100%;" onclick="showSection('chat')"><i class="fas fa-arrow-right"></i> Abrir Chat</button>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-sticky-note"></i> Mis Notas</h3>
+            <p>Organiza tus ideas y recordatorios.</p>
+            <button class="btn-primary" style="margin-top: 1rem; width: 100%;" onclick="showSection('notes')"><i class="fas fa-arrow-right"></i> Ver Notas</button>
+          </div>
+        </div>
+        <div class="news-feed" style="margin-top: 3rem;">
+          <h3 style="color: #6e45e2; margin-bottom: 1.5rem;"><i class="fas fa-newspaper"></i> Últimas Noticias Universitarias</h3>
+          <div class="card-list">
+            <div class="card">
+              <h3><i class="fas fa-bullhorn"></i> Convocatoria Hackatón 2024</h3>
+              <p>Inscríbete en la Hackatón Interuniversitaria y demuestra tus habilidades.</p>
+              <span class="university-badge" style="position: static; display: inline-block; margin-top: 1rem;">UPC</span>
+            </div>
+            <div class="card">
+              <h3><i class="fas fa-calendar-alt"></i> Feria de Empleos PUCP</h3>
+              <p>Oportunidades laborales y de prácticas para estudiantes de todas las carreras.</p>
+              <span class="university-badge" style="position: static; display: inline-block; margin-top: 1rem;">PUCP</span>
+            </div>
           </div>
         </div>
       </section>
-      <section id="clubs" tabindex="0" aria-label="Lista de clubs estudiantiles">
-        <h2><i class="fas fa-users" aria-hidden="true"></i> Clubs Estudiantiles</h2>
-        <div class="card-list" aria-live="polite">
-          <div class="card" tabindex="0" aria-describedby="club-tec-desc2" role="button">
-            <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Club de Tecnología</h3>
-            <p id="club-tec-desc2">Aprende sobre las últimas tendencias en tecnología, desarrollo y software.</p>
-          </div>
-          <div class="card" tabindex="0" aria-describedby="club-arte-desc" role="button">
-            <h3><i class="fas fa-paint-brush" aria-hidden="true"></i> Club de Arte</h3>
-            <p id="club-arte-desc">Explora tu creatividad y participa en exposiciones artísticas y talleres.</p>
-          </div>
-          <div class="card" tabindex="0" aria-describedby="club-robotica-desc" role="button">
-            <h3><i class="fas fa-robot" aria-hidden="true"></i> Club de Robótica</h3>
-            <p id="club-robotica-desc">Construye y programa robots junto a estudiantes de TECSUP e UNI.</p>
-          </div>
-        </div>
-      </section>
-      <section id="activities" tabindex="0" aria-label="Actividades extracurriculares">
-        <h2><i class="fas fa-star" aria-hidden="true"></i> Actividades Extracurriculares</h2>
-        <div class="card-list" aria-live="polite">
-          <div class="card" tabindex="0" aria-describedby="taller-desc" role="button">
-            <h3><i class="fas fa-code" aria-hidden="true"></i> Taller de Programación</h3>
-            <p id="taller-desc">Aprende a programar con expertos de TECSUP y otras universidades.</p>
-          </div>
-          <div class="card" tabindex="0" aria-describedby="concierto-desc" role="button">
-            <h3><i class="fas fa-music" aria-hidden="true"></i> Concierto de Fin de Año</h3>
-            <p id="concierto-desc">Disfruta de una noche llena de música y diversión con tus compañeros.</p>
-          </div>
-          <div class="card" tabindex="0" aria-describedby="maraton-desc" role="button">
-            <h3><i class="fas fa-book" aria-hidden="true"></i> Maratón de Lectura</h3>
-            <p id="maraton-desc">Participa en un evento de lectura y comparte tus libros favoritos.</p>
-          </div>
-        </div>
-      </section>
-      <section id="collaborations" tabindex="0" aria-label="Colaboraciones entre clubs">
-        <h2><i class="fas fa-handshake" aria-hidden="true"></i> Colaboraciones entre Clubs</h2>
-        <p style="font-weight: 600; font-size: 1.1rem;">Próximos eventos conjuntos para fortalecer la comunidad estudiantil:</p>
-        <ul style="list-style-type: none; padding-left: 0; font-weight: 600; color: #4836a1;">
-          <li style="padding: 0.7rem 0; border-bottom: 1px solid #ececff; display: flex; align-items: center; gap: 0.6rem;">
-            <i class="fas fa-music" aria-hidden="true"></i> Concierto de Música y Arte - 15 de diciembre
-          </li>
-          <li style="padding: 0.7rem 0; display: flex; align-items: center; gap: 0.6rem;">
-            <i class="fas fa-microscope" aria-hidden="true"></i> Feria de Ciencia y Tecnología (TECSUP y UPC) - 20 de enero
-          </li>
-        </ul>
-      </section>
-      <section id="network" tabindex="0" aria-label="Red interinstitucional">
-        <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Red Interinstitucional</h2>
-        <div class="university-filter" style="margin-bottom: 2rem;">
-          <label for="filter-university"><i class="fas fa-filter" aria-hidden="true"></i> Filtrar por institución:</label>
-          <select id="filter-university" onchange="filterClubs()" aria-label="Filtro de universidades para la red interinstitucional">
-            <option value="all">Todas las instituciones</option>
+
+      <section id="clubs">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-users"></i> Clubs Estudiantiles</h2>
+        <div class="university-filter">
+          <label for="club-university-filter"><i class="fas fa-filter"></i> Filtrar por Universidad:</label>
+          <select id="club-university-filter" onchange="filterClubs()">
+            <option value="all">Todas las Universidades</option>
             <option value="UPC">UPC</option>
             <option value="PUCP">PUCP</option>
             <option value="UNMSM">UNMSM</option>
@@ -1102,617 +1276,963 @@
             <option value="UNI">UNI</option>
           </select>
         </div>
-        <h3><i class="fas fa-users" aria-hidden="true"></i> Clubs Interinstitucionales</h3>
-        <div class="card-list" id="interclubs-list" aria-live="polite" aria-label="Lista de clubs interinstitucionales"></div>
-        <h3><i class="fas fa-calendar-alt" aria-hidden="true"></i> Eventos Interinstitucionales</h3>
-        <div class="card-list" id="interevents-list" aria-live="polite" aria-label="Lista de eventos interinstitucionales"></div>
-      </section>
-      <section id="chat" tabindex="0" aria-label="Sistema de chat entre estudiantes">
-        <h2><i class="fas fa-comments" aria-hidden="true"></i> Chat</h2>
-        <div class="chat-container" role="region" aria-live="polite" aria-label="Chat de estudiantes">
-          <div class="chat-sidebar" role="navigation" aria-label="Lista de chats y contactos">
-            <div class="chat-tabs" role="tablist" aria-label="Pestañas de chat">
-              <div class="chat-tab active" onclick="switchChatTab('global')" role="tab" tabindex="0" aria-selected="true" aria-controls="global-contacts"><i class="fas fa-globe"></i> Global</div>
-              <div class="chat-tab" onclick="switchChatTab('private')" role="tab" tabindex="0" aria-selected="false" aria-controls="private-contacts"><i class="fas fa-user-friends"></i> Privados</div>
-            </div>
-            <div id="global-contacts" class="chat-contacts" role="list" aria-label="Contactos chat global">
-              <div class="chat-contact active" role="listitem" tabindex="0" aria-current="page" onclick="openChat('global-chat')" aria-label="Abrir chat General">
-                <div class="chat-contact-name"><i class="fas fa-users"></i> Chat General</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> Todas las instituciones</div>
-              </div>
-              <div class="chat-contact" role="listitem" tabindex="0" onclick="openChat('club-tecnologia')" aria-label="Abrir chat Club de Tecnología">
-                <div class="chat-contact-name"><i class="fas fa-laptop-code"></i> Club de Tecnología</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> UPC + TECSUP + PUCP</div>
-              </div>
-              <div class="chat-contact" role="listitem" tabindex="0" onclick="openChat('club-robotica')" aria-label="Abrir chat Club de Robótica">
-                <div class="chat-contact-name"><i class="fas fa-robot"></i> Club de Robótica</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> TECSUP + UNI</div>
-              </div>
-            </div>
-            <div id="private-contacts" class="chat-contacts" role="list" aria-label="Contactos chat privado" style="display: none;">
-              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario1')" aria-label="Abrir chat privado con Ana Pérez">
-                <div class="chat-contact-name"><i class="fas fa-user"></i> Ana Pérez</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> PUCP</div>
-              </div>
-              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario2')" aria-label="Abrir chat privado con Carlos Gómez">
-                <div class="chat-contact-name"><i class="fas fa-user"></i> Carlos Gómez</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> TECSUP</div>
-              </div>
-              <div class="chat-contact" role="listitem" tabindex="0" onclick="openPrivateChat('usuario3')" aria-label="Abrir chat privado con Luisa Martínez">
-                <div class="chat-contact-name"><i class="fas fa-user"></i> Luisa Martínez</div>
-                <div class="chat-contact-university"><i class="fas fa-university"></i> UPC</div>
-              </div>
-            </div>
+        <div class="card-list" id="clubs-list">
           </div>
-          <div class="chat-main" role="region" aria-label="Ventana principal de chat">
-            <div class="chat-header" id="chat-header" tabindex="0"><i class="fas fa-comments"></i> Chat General</div>
-            <div class="chat-messages" id="chat-messages" tabindex="0" aria-live="polite" aria-relevant="additions"></div>
+      </section>
+
+      <section id="activities">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-star"></i> Próximas Actividades</h2>
+        <div class="university-filter">
+          <label for="activity-university-filter"><i class="fas fa-filter"></i> Filtrar por Universidad:</label>
+          <select id="activity-university-filter" onchange="filterActivities()">
+            <option value="all">Todas las Universidades</option>
+            <option value="UPC">UPC</option>
+            <option value="PUCP">PUCP</option>
+            <option value="UNMSM">UNMSM</option>
+            <option value="TECSUP">TECSUP</option>
+            <option value="UTP">UTP</option>
+            <option value="ULIMA">ULIMA</option>
+            <option value="USIL">USIL</option>
+            <option value="UNI">UNI</option>
+          </select>
+        </div>
+        <div class="card-list" id="activities-list">
+          </div>
+      </section>
+
+      <section id="collaborations">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-handshake"></i> Solicitudes de Colaboración</h2>
+        <button class="btn-primary" style="margin-bottom: 1.5rem;" onclick="showCollaborationForm()"><i class="fas fa-plus-circle"></i> Nueva Solicitud</button>
+        <div id="collaboration-form-container" class="form-container" style="display:none; max-width: 600px;">
+            <div class="student-theme-bg"></div> <h3><i class="fas fa-plus-circle"></i> Crear Nueva Solicitud</h3>
+          <form id="new-collaboration-form">
+            <label for="collaboration-title">Título:</label>
+            <input type="text" id="collaboration-title" required>
+            <label for="collaboration-description">Descripción:</label>
+            <textarea id="collaboration-description" rows="4" required></textarea>
+            <label for="collaboration-skills">Habilidades Requeridas (separadas por comas):</label>
+            <input type="text" id="collaboration-skills" placeholder="Ej: Python, Diseño UX, Marketing">
+            <label for="collaboration-contact">Contacto:</label>
+            <input type="text" id="collaboration-contact" required>
+            <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Enviar Solicitud</button>
+          </form>
+        </div>
+        <div class="card-list" id="collaborations-list">
+          </div>
+      </section>
+
+      <section id="network">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-network-wired"></i> Red Interinstitucional</h2>
+        <p>Conéctate con estudiantes de otras universidades para proyectos y eventos.</p>
+        <div class="university-filter">
+          <label for="network-university-filter"><i class="fas fa-filter"></i> Filtrar por Universidad:</label>
+          <select id="network-university-filter" onchange="filterNetwork()">
+            <option value="all">Todas las Universidades</option>
+            <option value="UPC">UPC</option>
+            <option value="PUCP">PUCP</option>
+            <option value="UNMSM">UNMSM</option>
+            <option value="TECSUP">TECSUP</option>
+            <option value="UTP">UTP</option>
+            <option value="ULIMA">ULIMA</option>
+            <option value="USIL">USIL</option>
+            <option value="UNI">UNI</option>
+          </select>
+        </div>
+        <div class="card-list" id="network-list">
+          </div>
+      </section>
+
+      <section id="chat">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-comments"></i> Chat</h2>
+        <div class="chat-container">
+          <div class="chat-sidebar">
+            <div class="chat-tabs">
+              <div class="chat-tab active" onclick="showChatContacts('individual')"><i class="fas fa-user"></i> Individual</div>
+              <div class="chat-tab" onclick="showChatContacts('group')"><i class="fas fa-users"></i> Grupos</div>
+            </div>
+            <div class="chat-contacts" id="chat-individual-contacts">
+              </div>
+            <div class="chat-contacts" id="chat-group-contacts" style="display:none;">
+              </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <i class="fas fa-user-circle"></i> <span id="current-chat-name">Selecciona un contacto</span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+              </div>
             <div class="chat-input">
-              <input type="text" id="chat-input" placeholder="Escribe un mensaje..." aria-label="Campo para escribir mensajes" />
-              <button onclick="sendMessage()" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i> Enviar</button>
+              <input type="text" id="message-input" placeholder="Escribe un mensaje..." />
+              <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Enviar</button>
             </div>
           </div>
         </div>
       </section>
-      <section id="notes" tabindex="0" aria-label="Gestión y visualización de tus notas">
-        <h2><i class="fas fa-sticky-note" aria-hidden="true"></i> Mis Notas</h2>
-        <div class="notes-container">
-          <div class="note-form" aria-label="Formulario para agregar nueva nota">
-            <h3><i class="fas fa-plus-circle" aria-hidden="true"></i> Nueva Nota</h3>
-            <input type="text" id="note-title" placeholder="Título de la nota" class="note-input" aria-label="Título de la nota">
-            <textarea id="note-content" placeholder="Escribe tu nota aquí..." class="note-input" aria-label="Contenido de la nota"></textarea>
-            <button onclick="addNote()" class="btn-primary" aria-label="Guardar nota"><i class="fas fa-save"></i> Guardar Nota</button>
+
+      <section id="social">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-share-alt"></i> Red Social Universitaria</h2>
+        <div class="social-post-form" style="background: rgba(245, 247, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+          <h3><i class="fas fa-plus-square"></i> Crear Nueva Publicación</h3>
+          <form id="social-post-form">
+            <textarea id="post-text" placeholder="¿Qué estás pensando hoy?" rows="3" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 1rem; background: rgba(255,255,255,0.9);"></textarea>
+            <label for="post-image" class="btn-primary" style="display: block; text-align: center; margin-bottom: 1rem; cursor: pointer;"><i class="fas fa-image"></i> Añadir Imagen (Opcional)</label>
+            <input type="file" id="post-image" accept="image/*" style="display: none;">
+            <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Publicar</button>
+          </form>
+        </div>
+        <div class="social-feed" id="social-feed">
+          <div class="post-example" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background: rgba(233, 240, 255, 0.9);">
+            <p><strong>UsuarioEjemplo1</strong> <em style='color:#888'>2024-06-26 10:30 AM</em></p>
+            <p>¡Emocionado por el nuevo proyecto en el club de programación!</p>
           </div>
-          <h3 style="margin-top: 2rem; color:#5a2ab3;"><i class="fas fa-notes" aria-hidden="true"></i> Tus Notas</h3>
-          <div class="notes-list" id="notes-list" aria-live="polite" aria-label="Lista dinámica de notas guardadas"></div>
+          <div class="post-example" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background: rgba(233, 240, 255, 0.9);">
+            <p><strong>EstudianteCollabu</strong> <em style='color:#888'>2024-06-25 03:15 PM</em></p>
+            <p>Recuerden la reunión del grupo de estudio de física mañana a las 9 AM.</p>
+            <img src="https://via.placeholder.com/400x200.png?text=Reunion+de+Estudio" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;" />
+          </div>
         </div>
       </section>
-      <section id="profile" tabindex="0" aria-label="Perfil de usuario y opciones de configuración">
-        <h2><i class="fas fa-user" aria-hidden="true"></i> Mi Perfil</h2>
-        <div class="profile-top" role="region" aria-label="Información del perfil">
-          <div class="profile-photo-wrapper" title="Subir o cambiar foto de perfil" tabindex="0" aria-haspopup="dialog" aria-label="Subir foto de perfil">
-            <img id="profile-photo-preview" alt="Foto de perfil del usuario" / src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/88ee552d-1ce7-47a9-9883-bb06b3ed4d0a.png">
-            <div id="profile-photo-placeholder"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
-            <label for="profile-photo-upload" id="profile-photo-label" tabindex="0" aria-label="Botón subir foto de perfil"><i class="fas fa-camera"></i></label>
-            <input type="file" accept="image/*" id="profile-photo-upload" aria-describedby="profile-photo-label" />
+
+      <section id="calls">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-phone"></i> Llamadas</h2>
+        <div class="call-container">
+          <div class="call-header">
+            <i class="fas fa-video"></i> Videollamada
           </div>
-          <div class="profile-info">
-            <h3 id="profile-name" aria-live="polite" aria-atomic="true">Cargando...</h3>
-            <p id="profile-institution" aria-live="polite" aria-atomic="true"><i class="fas fa-university"></i> Cargando...</p>
+          <div class="call-video">
+            <video id="local-video" autoplay muted style="width: 48%; border: 2px solid #6e45e2; border-radius: 8px;"></video>
+            <video id="remote-video" autoplay style="width: 48%; border: 2px solid #88d3ce; border-radius: 8px; margin-left: 1%;"></video>
+          </div>
+          <div class="call-controls">
+            <button id="start-call-btn" onclick="startCall()"><i class="fas fa-phone-alt"></i> Iniciar Llamada</button>
+            <button id="end-call-btn" class="end-call" onclick="endCall()"><i class="fas fa-phone-slash"></i> Terminar Llamada</button>
+            <button id="toggle-video-btn" onclick="toggleVideo()"><i class="fas fa-video"></i></button>
+            <button id="toggle-audio-btn" onclick="toggleAudio()"><i class="fas fa-microphone"></i></button>
           </div>
         </div>
-        <div id="profile-clubs-box" aria-live="polite" aria-label="Clubs en los que participa el usuario">
-          <h3 style="color:#5a2ab3; margin-bottom:1rem; display:flex; align-items:center; gap:0.65rem;">
-            <i class="fas fa-users" aria-hidden="true"></i> Clubs Participantes
-          </h3>
-          <p id="profile-clubs" style="font-weight: 600;">Ninguno</p>
+      </section>
+
+      <section id="notes">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-sticky-note"></i> Mis Notas</h2>
+        <div class="note-form">
+          <h3><i class="fas fa-plus-circle"></i> Crear Nueva Nota</h3>
+          <form id="new-note-form">
+            <label for="note-title">Título:</label>
+            <input type="text" id="note-title" required>
+            <label for="note-content">Contenido:</label>
+            <textarea id="note-content" rows="6" required></textarea>
+            <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Guardar Nota</button>
+          </form>
+        </div>
+        <div class="notes-container">
+          <h3 style="color: #6e45e2; margin-top: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-list-alt"></i> Mis Notas Guardadas</h3>
+          <div class="notes-list" id="notes-list">
+            <div class="note-card">
+              <h4>Recordatorio de Proyecto</h4>
+              <p>Reunión final del proyecto de base de datos el viernes a las 3 PM en el laboratorio 5.</p>
+              <span class="note-date"><i class="fas fa-calendar-alt"></i> 2024-06-24</span>
+              <button class="delete-note"><i class="fas fa-trash-alt"></i></button>
+            </div>
+            <div class="note-card">
+              <h4>Ideas para el Hackatón</h4>
+              <p>Desarrollar una aplicación de gestión de tareas colaborativa con integración de calendario.</p>
+              <span class="note-date"><i class="fas fa-calendar-alt"></i> 2024-06-22</span>
+              <button class="delete-note"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile">
+        <div class="student-theme-bg"></div> <h2><i class="fas fa-user"></i> Mi Perfil</h2>
+        <div class="profile-container">
+          <div class="profile-header">
+            <div class="profile-avatar" onclick="openAvatarSelector()">
+              <img id="profile-avatar-img" src="https://via.placeholder.com/120/6e45e2/ffffff?text=U" alt="Avatar de Usuario">
+              <div class="change-avatar"><i class="fas fa-camera"></i> Cambiar</div>
+            </div>
+            <div class="profile-info">
+              <h3 class="profile-name" id="profile-username-display">Nombre de Usuario</h3>
+              <p class="profile-university"><i class="fas fa-university"></i> <span id="profile-university-display">Universidad</span></p>
+            </div>
+          </div>
+
+          <div class="profile-section">
+            <h3><i class="fas fa-info-circle"></i> Información Personal</h3>
+            <p><strong>Email:</strong> <span id="profile-email">usuario@example.com</span></p>
+            <p><strong>Intereses:</strong> <span id="profile-interests">Programación, Diseño, Marketing Digital</span></p>
+            <p><strong>Habilidades:</strong> <span id="profile-skills">JavaScript, Python, Photoshop</span></p>
+            <div class="profile-edit">
+              <button onclick="editProfile()"><i class="fas fa-edit"></i> Editar Perfil</button>
+            </div>
+          </div>
+          
+          <div id="edit-profile-form-container" class="form-container" style="display:none; max-width: 100%;">
+            <div class="student-theme-bg"></div> <h3><i class="fas fa-edit"></i> Editar Información de Perfil</h3>
+            <form id="edit-profile-form">
+              <label for="edit-email">Email:</label>
+              <input type="email" id="edit-email">
+              <label for="edit-interests">Intereses (separados por comas):</label>
+              <input type="text" id="edit-interests">
+              <label for="edit-skills">Habilidades (separadas por comas):</label>
+              <input type="text" id="edit-skills">
+              <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+            </form>
+          </div>
+
+          <div class="profile-section" style="margin-top: 1.5rem;">
+            <h3><i class="fas fa-calendar-alt"></i> Mis Actividades Recientes</h3>
+            <ul id="profile-recent-activities" style="list-style: none; padding-left: 0;">
+              <li><i class="fas fa-check-circle" style="color: #2ed573; margin-right: 0.5rem;"></i> Participó en el "Taller de Desarrollo Web" (hace 2 días)</li>
+              <li><i class="fas fa-check-circle" style="color: #2ed573; margin-right: 0.5rem;"></i> Se unió al club de "Robótica Avanzada" (hace 1 semana)</li>
+              <li><i class="fas fa-check-circle" style="color: #2ed573; margin-right: 0.5rem;"></i> Completó el curso "Introducción a la IA" (hace 3 semanas)</li>
+            </ul>
+          </div>
         </div>
       </section>
     </main>
   </div>
 
-  <script>
-    // Pre-existing data for interclubs, interevents, chats remain unchanged
-    const interclubs = [
-      {
-        id: 1,
-        name: "Tecnología Avanzada",
-        description: "Club enfocado en las últimas tecnologías con miembros de TECSUP y UPC",
-        universities: ["TECSUP", "UPC"],
-        contact: "tecnologia.avanzada@example.com"
-      },
-      {
-        id: 2,
-        name: "Emprendimiento Interuniversitario",
-        description: "Para estudiantes emprendedores de todas las instituciones",
-        universities: ["UPC", "PUCP", "TECSUP", "USIL", "UNI"],
-        contact: "emprendimiento.inter@example.com"
-      },
-      {
-        id: 3,
-        name: "Robótica Colaborativa",
-        description: "Club de robótica con participación de TECSUP, UPC y UNI",
-        universities: ["TECSUP", "UPC", "UNI"],
-        contact: "robotica.colab@example.com"
-      },
-      {
-        id: 4,
-        name: "Ingeniería Industrial",
-        description: "Club técnico con participación de TECSUP, UNI y UPC",
-        universities: ["TECSUP", "UNI", "UPC"],
-        contact: "ing.industrial@example.com"
-      },
-      {
-        id: 5,
-        name: "Diseño y Creatividad",
-        description: "Club para diseñadores de todas las instituciones",
-        universities: ["PUCP", "UPC", "TECSUP", "USIL"],
-        contact: "diseno.creativo@example.com"
-      }
-    ];
-    const interevents = [
-      {
-        id: 1,
-        name: "Hackatón Interuniversitaria",
-        description: "Competencia de programación abierta a todas las universidades",
-        date: "15 Noviembre 2025",
-        location: "Campus UPC - Monterrico",
-        universities: ["UPC", "PUCP", "TECSUP", "UTP", "USIL"]
-      },
-      {
-        id: 2,
-        name: "Feria de Carreras Técnicas",
-        description: "Evento organizado por TECSUP con participación de otras instituciones",
-        date: "25 Noviembre 2025",
-        location: "Campus TECSUP - San Isidro",
-        universities: ["TECSUP", "UPC", "UTP", "UNI"]
-      },
-      {
-        id: 3,
-        name: "Simposio de Ingeniería",
-        description: "Evento académico con ponentes de múltiples universidades",
-        date: "5 Diciembre 2025",
-        location: "Auditorio PUCP",
-        universities: ["PUCP", "UPC", "TECSUP", "UNMSM"]
-      },
-      {
-        id: 4,
-        name: "ExpoTECSUP 2025",
-        description: "Evento anual de TECSUP abierto a todas las instituciones",
-        date: "10 Diciembre 2025",
-        location: "Campus TECSUP - San Isidro",
-        universities: ["TECSUP", "UPC", "PUCP", "UTP"]
-      },
-      {
-        id: 5,
-        name: "Olimpiadas de Programación",
-        description: "Competencia de programación para estudiantes técnicos",
-        date: "15 Enero 2026",
-        location: "Campus ULIMA",
-        universities: ["TECSUP", "UPC", "UTP", "ULIMA", "UNI"]
-      }
-    ];
-    const chatMessages = {
-      'global-chat': [
-        {
-          sender: 'Sistema',
-          content: 'Bienvenido al chat general de Collabu. ¡Conéctate con estudiantes de otras instituciones!',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ],
-      'club-tecnologia': [
-        {
-          sender: 'Sistema',
-          content: 'Bienvenido al chat del Club de Tecnología',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ],
-      'club-robotica': [
-        {
-          sender: 'Sistema',
-          content: 'Bienvenido al chat del Club de Robótica',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ],
-      'usuario1': [
-        {
-          sender: 'Ana Pérez',
-          content: 'Hola, ¿cómo estás?',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ],
-      'usuario2': [
-        {
-          sender: 'Carlos Gómez',
-          content: '¿Vas a asistir al evento de TECSUP?',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ],
-      'usuario3': [
-        {
-          sender: 'Luisa Martínez',
-          content: 'Nos vemos en el taller de programación',
-          time: '10:00 AM',
-          isCurrentUser: false
-        }
-      ]
-    };
-    // Global app state
-    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-    let currentChat = 'global-chat';
-    let currentChatType = 'global';
-    let profilePhotoDataUrl = localStorage.getItem('profilePhotoDataUrl') || null;
+  <div class="avatar-selector" id="avatar-selector">
+    <div class="avatar-selector-content">
+        <div class="student-theme-bg"></div> <h3 class="avatar-selector-title"><i class="fas fa-image"></i> Selecciona un Avatar o Sube uno Nuevo</h3>
+      <div class="avatar-grid" id="avatar-grid">
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/VMyh8QY/avatar1.png"><img src="https://i.ibb.co/VMyh8QY/avatar1.png" alt="Avatar 1"></div>
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/QjF02f2/avatar2.png"><img src="https://i.ibb.co/QjF02f2/avatar2.png" alt="Avatar 2"></div>
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/vQNp4fT/avatar3.png"><img src="https://i.ibb.co/vQNp4fT/avatar3.png" alt="Avatar 3"></div>
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/q70k05F/avatar4.png"><img src="https://i.ibb.co/q70k05F/avatar4.png" alt="Avatar 4"></div>
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/R2W7JqP/avatar5.png"><img src="https://i.ibb.co/R2W7JqP/avatar5.png" alt="Avatar 5"></div>
+        <div class="avatar-option" data-avatar-url="https://i.ibb.co/g313X1Q/avatar6.png"><img src="https://i.ibb.co/g313X1Q/avatar6.png" alt="Avatar 6"></div>
+      </div>
+      <label for="custom-avatar-upload" class="btn-primary" style="display: block; text-align: center; margin-bottom: 1rem; cursor: pointer;"><i class="fas fa-upload"></i> Subir Avatar Personalizado</label>
+      <input type="file" id="custom-avatar-upload" accept="image/*" style="display: none;">
+      <div class="avatar-selector-buttons">
+        <button class="confirm" onclick="applyAvatar()"><i class="fas fa-check-circle"></i> Aplicar</button>
+        <button class="cancel" onclick="closeAvatarSelector()"><i class="fas fa-times-circle"></i> Cancelar</button>
+      </div>
+    </div>
+  </div>
 
-    // Initialize app on page load
-    function initializeApp() {
-      if (currentUser) {
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('register-section').style.display = 'none';
-        document.getElementById('main-content').classList.remove('hidden');
-        updateProfile();
-        showSection('dashboard');
-      } else {
-        // Clear profile photo preview
-        resetProfilePhotoPreview();
-      }
-    }
 
-    // Section display handler
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('#main-content section');
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
+<script>
+  // Simulación de base de datos de usuarios
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 
-      const buttons = document.querySelectorAll('nav button');
-      buttons.forEach(b => b.classList.remove('active'));
-      const active = Array.from(buttons).find(btn => btn.textContent.toLowerCase().includes(sectionId));
-      if (active) active.classList.add('active');
+  // Estado de UI
+  const loginSection = document.getElementById('login-section');
+  const registerSection = document.getElementById('register-section');
+  const mainContent = document.getElementById('main-content');
+  const dashboardUsername = document.getElementById('dashboard-username');
+  const profileUsernameDisplay = document.getElementById('profile-username-display');
+  const profileUniversityDisplay = document.getElementById('profile-university-display');
+  const profileEmail = document.getElementById('profile-email');
+  const profileInterests = document.getElementById('profile-interests');
+  const profileSkills = document.getElementById('profile-skills');
+  const profileAvatarImg = document.getElementById('profile-avatar-img');
+  const heroImage = document.getElementById('login-hero');
+  const logoContainer = document.querySelector('.logo-container');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.overlay');
 
-      if (sectionId === 'notes') loadNotes();
-      if (sectionId === 'network') {
-        loadInterclubs();
-        loadInterevents();
-      }
-      if (sectionId === 'chat') loadChat(currentChat);
-    }
+  // Funciones de utilidad
+  function showMessage(elementId, message, isError = true) {
+    const element = document.getElementById(elementId);
+    element.textContent = message;
+    element.style.display = 'block';
+    element.style.color = isError ? '#ff4757' : '#2ed573';
+    element.style.background = isError ? 'rgba(255, 71, 87, 0.1)' : 'rgba(46, 213, 115, 0.1)';
+  }
 
-    // User registration & Login management
-    const registerForm = document.getElementById('register-form');
-    const registerSection = document.getElementById('register-section');
-    const loginSection = document.getElementById('login-section');
-    const loginForm = document.getElementById('login-form');
-    const mainContent = document.getElementById('main-content');
-    const errorMessage = document.getElementById('error-message');
-    const registerErrorMessage = document.getElementById('register-error-message');
-    const successMessage = document.getElementById('success-message');
+  function hideMessage(elementId) {
+    document.getElementById(elementId).style.display = 'none';
+  }
 
-    document.getElementById('show-register').addEventListener('click', () => {
+  // Funciones de Autenticación
+  function checkSession() {
+    if (currentUser) {
       loginSection.style.display = 'none';
-      registerSection.style.display = 'flex';
-      errorMessage.textContent = '';
-      registerErrorMessage.textContent = '';
-      successMessage.textContent = '';
-      loginForm.reset();
-      registerForm.reset();
-      registerForm.querySelector('input').focus();
-    });
-    document.getElementById('show-login').addEventListener('click', () => {
       registerSection.style.display = 'none';
-      loginSection.style.display = 'flex';
-      errorMessage.textContent = '';
-      registerErrorMessage.textContent = '';
-      successMessage.textContent = '';
-      loginForm.reset();
-      registerForm.reset();
-      loginForm.querySelector('input').focus();
-    });
-
-    function getUsers() {
-      const users = localStorage.getItem('collabuUsers');
-      return users ? JSON.parse(users) : [];
-    }
-    function saveUsers(users) {
-      localStorage.setItem('collabuUsers', JSON.stringify(users));
-    }
-    registerForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const username = document.getElementById('register-username').value.trim();
-      const password = document.getElementById('register-password').value;
-      const passwordConfirm = document.getElementById('register-password-confirm').value;
-      const university = document.getElementById('register-university').value;
-
-      if (!username || !password || !passwordConfirm || !university) {
-        registerErrorMessage.textContent = 'Por favor, completa todos los campos.';
-        return;
-      }
-      if (password !== passwordConfirm) {
-        registerErrorMessage.textContent = 'Las contraseñas no coinciden.';
-        return;
-      }
-      const users = getUsers();
-      if (users.some(u => u.username === username)) {
-        registerErrorMessage.textContent = 'El usuario ya existe.';
-        return;
-      }
-      users.push({ username, password, university, clubs: [] });
-      saveUsers(users);
-      successMessage.textContent = 'Registro exitoso. ¡Inicia sesión!';
-      registerForm.reset();
-      setTimeout(() => {
-        registerSection.style.display = 'none';
-        loginSection.style.display = 'flex';
-        successMessage.textContent = '';
-        loginForm.querySelector('input').focus();
-      }, 2200);
-    });
-
-    loginForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value;
-      const users = getUsers();
-      const user = users.find(u => u.username === username && u.password === password);
-      if (!user) {
-        errorMessage.textContent = 'Usuario o contraseña incorrectos.';
-        return;
-      }
-      currentUser = user;
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      loginSection.style.display = 'none';
+      heroImage.style.display = 'none';
+      logoContainer.style.display = 'none';
       mainContent.classList.remove('hidden');
-      updateProfile();
-      showSection('dashboard');
-    });
-
-    function logout() {
-      currentUser = null;
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('profilePhotoDataUrl');
-      profilePhotoDataUrl = null;
-      mainContent.classList.add('hidden');
+      menuToggle.style.display = 'flex';
+      updateDashboardAndProfile();
+      showSection('dashboard'); // Mostrar dashboard por defecto al iniciar sesión
+    } else {
       loginSection.style.display = 'flex';
-      loginForm.reset();
-      errorMessage.textContent = '';
-      resetProfilePhotoPreview();
+      registerSection.style.display = 'none';
+      heroImage.style.display = 'block';
+      logoContainer.style.display = 'block';
+      mainContent.classList.add('hidden');
+      menuToggle.style.display = 'none';
+      // Reiniciar secciones activas en el menú lateral
+      document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    }
+  }
+
+  function login(username, password) {
+    hideMessage('error-message');
+    const user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      currentUser = user;
+      sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+      checkSession();
+    } else {
+      showMessage('error-message', 'Usuario o contraseña incorrectos.');
+    }
+  }
+
+  function register(username, password, passwordConfirm, university) {
+    hideMessage('register-error-message');
+    hideMessage('success-message');
+
+    if (password !== passwordConfirm) {
+      showMessage('register-error-message', 'Las contraseñas no coinciden.');
+      return;
+    }
+    if (users.some(u => u.username === username)) {
+      showMessage('register-error-message', 'El nombre de usuario ya existe.');
+      return;
     }
 
-    // Update profile UI
-    function updateProfile() {
-      if (currentUser) {
-        document.getElementById('profile-name').textContent = currentUser.username;
-        document.getElementById('profile-institution').textContent = currentUser.university;
-        document.getElementById('profile-clubs').textContent = currentUser.clubs.length ? currentUser.clubs.join(', ') : 'Ninguno';
-        loadProfilePhoto();
-      }
-    }
-    // Load profile photo from localStorage or reset to placeholder
-    function loadProfilePhoto() {
-      const preview = document.getElementById('profile-photo-preview');
-      const placeholder = document.getElementById('profile-photo-placeholder');
-      if (profilePhotoDataUrl) {
-        preview.src = profilePhotoDataUrl;
-        preview.style.display = 'block';
-        placeholder.style.display = 'none';
-      } else {
-        preview.src = '';
-        preview.style.display = 'none';
-        placeholder.style.display = 'flex';
-      }
-    }
-    // Reset preview photo
-    function resetProfilePhotoPreview() {
-      profilePhotoDataUrl = null;
-      loadProfilePhoto();
-    }
-    // Handler for profile photo upload
-    document.getElementById('profile-photo-upload').addEventListener('change', event => {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          profilePhotoDataUrl = e.target.result;
-          localStorage.setItem('profilePhotoDataUrl', profilePhotoDataUrl);
-          loadProfilePhoto();
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Por favor selecciona un archivo de imagen válido.');
-      }
-      event.target.value = ''; // Reset input
+    const newUser = {
+      username,
+      password,
+      university,
+      avatar: 'https://via.placeholder.com/120/6e45e2/ffffff?text=U', // Default avatar
+      email: '',
+      interests: '',
+      skills: ''
+    };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    showMessage('success-message', 'Registro exitoso. ¡Ahora puedes iniciar sesión!', false);
+    document.getElementById('register-form').reset();
+    showLogin();
+  }
+
+  function logout() {
+    currentUser = null;
+    sessionStorage.removeItem('currentUser');
+    checkSession();
+    toggleSidebar(); // Cerrar sidebar si está abierto
+  }
+
+  // Manejadores de eventos de formularios de autenticación
+  document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    login(username, password);
+  });
+
+  document.getElementById('register-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+    const passwordConfirm = document.getElementById('register-password-confirm').value;
+    const university = document.getElementById('register-university').value;
+    register(username, password, passwordConfirm, university);
+  });
+
+  document.getElementById('show-register').addEventListener('click', function() {
+    loginSection.style.display = 'none';
+    registerSection.style.display = 'flex';
+    heroImage.style.display = 'none';
+    logoContainer.style.display = 'none';
+  });
+
+  document.getElementById('show-login').addEventListener('click', function() {
+    showLogin();
+  });
+
+  function showLogin() {
+    registerSection.style.display = 'none';
+    loginSection.style.display = 'flex';
+    heroImage.style.display = 'block';
+    logoContainer.style.display = 'block';
+    hideMessage('register-error-message');
+    hideMessage('success-message');
+  }
+
+  // Funciones de navegación y UI principal
+  function toggleSidebar() {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+  }
+
+  function showSection(sectionId) {
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.remove('active');
     });
+    document.getElementById(sectionId).classList.add('active');
 
-    // Notes management
-    function getNotes() {
-      if (!currentUser) return [];
-      const notes = localStorage.getItem(`notes_${currentUser.username}`);
-      return notes ? JSON.parse(notes) : [];
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+      link.classList.remove('active');
+    });
+    document.querySelector(`.sidebar-menu a[onclick="showSection('${sectionId}')"]`).classList.add('active');
+
+    if (sectionId === 'profile') {
+      updateProfileData();
     }
-    function saveNotes(notes) {
-      if (currentUser) {
-        localStorage.setItem(`notes_${currentUser.username}`, JSON.stringify(notes));
+    toggleSidebar(); // Cerrar sidebar después de seleccionar una sección
+  }
+
+  function updateDashboardAndProfile() {
+    if (currentUser) {
+      dashboardUsername.textContent = currentUser.username;
+      profileUsernameDisplay.textContent = currentUser.username;
+      profileUniversityDisplay.textContent = currentUser.university;
+      profileEmail.textContent = currentUser.email || 'N/A';
+      profileInterests.textContent = currentUser.interests || 'N/A';
+      profileSkills.textContent = currentUser.skills || 'N/A';
+      profileAvatarImg.src = currentUser.avatar;
+
+      // Set values for edit profile form
+      document.getElementById('edit-email').value = currentUser.email || '';
+      document.getElementById('edit-interests').value = currentUser.interests || '';
+      document.getElementById('edit-skills').value = currentUser.skills || '';
+    }
+  }
+
+  function updateProfileData() {
+    profileUsernameDisplay.textContent = currentUser.username;
+    profileUniversityDisplay.textContent = currentUser.university;
+    profileEmail.textContent = currentUser.email || 'N/A';
+    profileInterests.textContent = currentUser.interests || 'N/A';
+    profileSkills.textContent = currentUser.skills || 'N/A';
+    profileAvatarImg.src = currentUser.avatar;
+
+    document.getElementById('edit-email').value = currentUser.email || '';
+    document.getElementById('edit-interests').value = currentUser.interests || '';
+    document.getElementById('edit-skills').value = currentUser.skills || '';
+  }
+
+  function editProfile() {
+    const editFormContainer = document.getElementById('edit-profile-form-container');
+    editFormContainer.style.display = editFormContainer.style.display === 'none' ? 'flex' : 'none';
+  }
+
+  document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    currentUser.email = document.getElementById('edit-email').value;
+    currentUser.interests = document.getElementById('edit-interests').value;
+    currentUser.skills = document.getElementById('edit-skills').value;
+
+    // Update users array in localStorage
+    const userIndex = users.findIndex(u => u.username === currentUser.username);
+    if (userIndex !== -1) {
+      users[userIndex] = currentUser;
+      localStorage.setItem('users', JSON.stringify(users));
+      sessionStorage.setItem('currentUser', JSON.stringify(currentUser)); // Update session storage as well
+    }
+    updateProfileData();
+    editProfile(); // Hide form after saving
+  });
+
+  // Funcionalidad de Avatar
+  const avatarSelector = document.getElementById('avatar-selector');
+  let selectedAvatar = currentUser ? currentUser.avatar : 'https://via.placeholder.com/120/6e45e2/ffffff?text=U'; // Initial selection
+
+  function openAvatarSelector() {
+    avatarSelector.classList.add('active');
+    document.querySelectorAll('.avatar-option').forEach(option => {
+      option.classList.remove('selected');
+      if (option.dataset.avatarUrl === selectedAvatar) {
+        option.classList.add('selected');
       }
+    });
+  }
+
+  function closeAvatarSelector() {
+    avatarSelector.classList.remove('active');
+  }
+
+  document.getElementById('avatar-grid').addEventListener('click', function(event) {
+    const target = event.target.closest('.avatar-option');
+    if (target) {
+      document.querySelectorAll('.avatar-option').forEach(option => option.classList.remove('selected'));
+      target.classList.add('selected');
+      selectedAvatar = target.dataset.avatarUrl;
     }
-    function addNote() {
-      if (!currentUser) return;
-      const title = document.getElementById('note-title').value.trim();
-      const content = document.getElementById('note-content').value.trim();
-      if (!title || !content) return;
-      const notes = getNotes();
-      notes.push({
-        id: Date.now(),
-        title,
-        content,
-        date: new Date().toLocaleString()
-      });
-      saveNotes(notes);
-      document.getElementById('note-title').value = '';
-      document.getElementById('note-content').value = '';
-      loadNotes();
+  });
+
+  document.getElementById('custom-avatar-upload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        selectedAvatar = e.target.result;
+        // Create a temporary selected avatar element to show the uploaded one
+        const tempAvatarOption = document.createElement('div');
+        tempAvatarOption.classList.add('avatar-option', 'selected');
+        tempAvatarOption.innerHTML = `<img src="${selectedAvatar}" alt="Custom Avatar">`;
+        document.querySelectorAll('.avatar-option').forEach(option => option.classList.remove('selected'));
+        document.getElementById('avatar-grid').prepend(tempAvatarOption); // Add to the beginning
+      };
+      reader.readAsDataURL(file);
     }
-    function deleteNote(id) {
-      if (!currentUser) return;
-      const notes = getNotes().filter(note => note.id !== id);
-      saveNotes(notes);
-      loadNotes();
-    }
-    function loadNotes() {
-      const notesList = document.getElementById('notes-list');
-      notesList.innerHTML = '';
-      const notes = getNotes();
-      if(notes.length === 0) {
-        notesList.innerHTML = '<p style="color: #777; font-style: italic; text-align: center;">No tienes notas guardadas aún.</p>';
-        return;
+  });
+
+  function applyAvatar() {
+    if (currentUser) {
+      currentUser.avatar = selectedAvatar;
+      profileAvatarImg.src = selectedAvatar;
+
+      // Update users array in localStorage
+      const userIndex = users.findIndex(u => u.username === currentUser.username);
+      if (userIndex !== -1) {
+        users[userIndex] = currentUser;
+        localStorage.setItem('users', JSON.stringify(users));
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser)); // Update session storage as well
       }
-      notes.forEach(note => {
-        const noteCard = document.createElement('div');
-        noteCard.className = 'note-card';
-        noteCard.innerHTML = `
-          <h4>${note.title}</h4>
-          <p>${note.content}</p>
-          <div class="note-date"><i class="far fa-calendar-alt" aria-hidden="true"></i> ${note.date}</div>
-          <button class="delete-note" aria-label="Eliminar nota titulada: ${note.title}" onclick="deleteNote(${note.id})"><i class="fas fa-times"></i></button>
-        `;
-        notesList.appendChild(noteCard);
-      });
+      closeAvatarSelector();
+    }
+  }
+
+  // Data simulación para el resto de secciones
+  const clubsData = [
+    { name: "Club de Programación", description: "Enfocado en desarrollo de software y algoritmos.", university: "UPC", icon: "fas fa-laptop-code" },
+    { name: "Club de Robótica", description: "Diseño y construcción de robots autónomos.", university: "PUCP", icon: "fas fa-robot" },
+    { name: "Círculo de Estudios de Matemáticas", description: "Refuerzo y resolución de problemas avanzados.", university: "UNMSM", icon: "fas fa-calculator" },
+    { name: "Club de Debate", description: "Mejora tus habilidades de oratoria y argumentación.", university: "UTP", icon: "fas fa-comments" },
+    { name: "Club de Marketing Digital", description: "Estrategias de marketing online y redes sociales.", university: "ULIMA", icon: "fas fa-chart-line" },
+    { name: "Club de Emprendimiento", description: "Desarrollo de ideas de negocio y startups.", university: "USIL", icon: "fas fa-lightbulb" }
+  ];
+
+  const activitiesData = [
+    { name: "Taller de Desarrollo Web", description: "Aprende HTML, CSS y JavaScript desde cero.", university: "UPC", date: "2024-07-10", icon: "fas fa-code" },
+    { name: "Hackatón Interuniversitario", description: "Competición de desarrollo de software intensiva.", university: "PUCP", date: "2024-08-05", icon: "fas fa-trophy" },
+    { name: "Charla de Inteligencia Artificial", description: "Descubre los avances y aplicaciones de la IA.", university: "UNMSM", date: "2024-07-20", icon: "fas fa-brain" },
+    { name: "Feria de Proyectos de Ingeniería", description: "Exposición de proyectos innovadores de ingeniería.", university: "UNI", date: "2024-09-01", icon: "fas fa-flask" }
+  ];
+
+  const collaborationsData = []; // Se llenará dinámicamente
+
+  const networkProfilesData = [
+    { name: "Ana Torres", university: "PUCP", interests: "Diseño UX, Gestión de Proyectos", skills: "Figma, Scrum" },
+    { name: "Carlos Soto", university: "UNI", interests: "Inteligencia Artificial, Data Science", skills: "Python, Machine Learning" },
+    { name: "Luisa Mendoza", university: "ULIMA", interests: "Marketing Digital, Contenido", skills: "SEO, Redes Sociales" },
+  ];
+
+  const chatContacts = [
+    { name: "Juan Perez", university: "UPC", type: "individual" },
+    { name: "Maria Lopez", university: "PUCP", type: "individual" },
+    { name: "Grupo de Proyecto X", university: "UPC", type: "group" },
+    { name: "Club de Robótica", university: "UNMSM", type: "group" }
+  ];
+
+  const chatMessages = {}; // Almacena mensajes por contacto
+
+  // Funciones de carga y filtrado de contenido
+  function loadClubs(filter = 'all') {
+    const list = document.getElementById('clubs-list');
+    list.innerHTML = '';
+    const filteredClubs = filter === 'all' ? clubsData : clubsData.filter(club => club.university === filter);
+    filteredClubs.forEach(club => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3><i class="${club.icon}"></i> ${club.name}</h3>
+        <p>${club.description}</p>
+        <span class="university-badge">${club.university}</span>
+        <button class="btn-primary" style="margin-top: 1rem; width: 100%;"><i class="fas fa-plus-circle"></i> Unirse</button>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function filterClubs() {
+    loadClubs(document.getElementById('club-university-filter').value);
+  }
+
+  function loadActivities(filter = 'all') {
+    const list = document.getElementById('activities-list');
+    list.innerHTML = '';
+    const filteredActivities = filter === 'all' ? activitiesData : activitiesData.filter(activity => activity.university === filter);
+    filteredActivities.forEach(activity => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3><i class="${activity.icon}"></i> ${activity.name}</h3>
+        <p>${activity.description}</p>
+        <p><i class="fas fa-calendar-alt"></i> ${activity.date}</p>
+        <span class="university-badge">${activity.university}</span>
+        <button class="btn-primary" style="margin-top: 1rem; width: 100%;"><i class="fas fa-info-circle"></i> Más info</button>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function filterActivities() {
+    loadActivities(document.getElementById('activity-university-filter').value);
+  }
+
+  function showCollaborationForm() {
+    document.getElementById('collaboration-form-container').style.display = 'flex';
+  }
+
+  document.getElementById('new-collaboration-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('collaboration-title').value;
+    const description = document.getElementById('collaboration-description').value;
+    const skills = document.getElementById('collaboration-skills').value;
+    const contact = document.getElementById('collaboration-contact').value;
+
+    const newCollaboration = {
+      title,
+      description,
+      skills,
+      contact,
+      author: currentUser.username,
+      university: currentUser.university,
+      date: new Date().toLocaleDateString()
+    };
+    collaborationsData.push(newCollaboration);
+    localStorage.setItem('collaborations', JSON.stringify(collaborationsData)); // Guardar en localStorage
+    loadCollaborations();
+    document.getElementById('new-collaboration-form').reset();
+    document.getElementById('collaboration-form-container').style.display = 'none';
+  });
+
+  function loadCollaborations() {
+    const list = document.getElementById('collaborations-list');
+    list.innerHTML = '';
+    const storedCollaborations = JSON.parse(localStorage.getItem('collaborations')) || [];
+    collaborationsData.splice(0, collaborationsData.length, ...storedCollaborations); // Sincronizar con localStorage
+
+    if (collaborationsData.length === 0) {
+      list.innerHTML = '<p style="text-align: center; color: #888; margin-top: 2rem;">No hay solicitudes de colaboración disponibles.</p>';
+      return;
     }
 
-    // Load interclubs and events filtered by university
-    function loadInterclubs() {
-      const interclubsList = document.getElementById('interclubs-list');
-      interclubsList.innerHTML = '';
-      const filter = document.getElementById('filter-university').value;
-      const filteredClubs = filter === 'all' ? interclubs : interclubs.filter(club => club.universities.includes(filter));
-      if(filteredClubs.length === 0) {
-        interclubsList.innerHTML = '<p style="font-style: italic; text-align: center; color: #555;">No hay clubs para esta institución.</p>';
-        return;
-      }
-      filteredClubs.forEach(club => {
-        const card = document.createElement('div');
-        card.className = 'card interclub-card';
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'article');
-        card.setAttribute('aria-label', `Club ${club.name}: ${club.description}, contacto ${club.contact}, universidades: ${club.universities.join(', ')}`);
-        card.innerHTML = `
-          <h3><i class="fas fa-users" aria-hidden="true"></i> ${club.name}</h3>
-          <p>${club.description}</p>
-          <p><i class="fas fa-envelope" aria-hidden="true"></i> Contacto: <a href="mailto:${club.contact}" style="color:#422cbfff;">${club.contact}</a></p>
-          <span class="university-badge" aria-label="Universidades participantes"><i class="fas fa-university" aria-hidden="true"></i> ${club.universities.join(', ')}</span>
-        `;
-        interclubsList.appendChild(card);
-      });
+    collaborationsData.forEach(collab => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3><i class="fas fa-handshake"></i> ${collab.title}</h3>
+        <p>${collab.description}</p>
+        <p><strong>Habilidades:</strong> ${collab.skills}</p>
+        <p><strong>Contacto:</strong> ${collab.contact}</p>
+        <p><small>Publicado por ${collab.author} de ${collab.university} el ${collab.date}</small></p>
+        <button class="btn-primary" style="margin-top: 1rem; width: 100%;"><i class="fas fa-reply"></i> Contactar</button>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function loadNetworkProfiles(filter = 'all') {
+    const list = document.getElementById('network-list');
+    list.innerHTML = '';
+    const filteredProfiles = filter === 'all' ? networkProfilesData : networkProfilesData.filter(profile => profile.university === filter);
+    filteredProfiles.forEach(profile => {
+      const card = document.createElement('div');
+      card.className = 'card interclub-card';
+      card.innerHTML = `
+        <h3><i class="fas fa-user-circle"></i> ${profile.name}</h3>
+        <p><strong>Intereses:</strong> ${profile.interests}</p>
+        <p><strong>Habilidades:</strong> ${profile.skills}</p>
+        <span class="university-badge">${profile.university}</span>
+        <button class="btn-primary" style="margin-top: 1rem; width: 100%;"><i class="fas fa-user-plus"></i> Conectar</button>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function filterNetwork() {
+    loadNetworkProfiles(document.getElementById('network-university-filter').value);
+  }
+
+  function showChatContacts(type) {
+    document.querySelectorAll('.chat-contacts').forEach(contactList => contactList.style.display = 'none');
+    document.querySelectorAll('.chat-tab').forEach(tab => tab.classList.remove('active'));
+
+    if (type === 'individual') {
+      document.getElementById('chat-individual-contacts').style.display = 'block';
+      document.querySelector('.chat-tab:nth-child(1)').classList.add('active');
+    } else {
+      document.getElementById('chat-group-contacts').style.display = 'block';
+      document.querySelector('.chat-tab:nth-child(2)').classList.add('active');
     }
-    function loadInterevents() {
-      const intereventsList = document.getElementById('interevents-list');
-      intereventsList.innerHTML = '';
-      const filter = document.getElementById('filter-university').value;
-      const filteredEvents = filter === 'all' ? interevents : interevents.filter(event => event.universities.includes(filter));
-      if(filteredEvents.length === 0) {
-        intereventsList.innerHTML = '<p style="font-style: italic; text-align: center; color: #555;">No hay eventos para esta institución.</p>';
-        return;
+    loadChatContacts(type);
+  }
+
+  function loadChatContacts(type) {
+    const individualList = document.getElementById('chat-individual-contacts');
+    const groupList = document.getElementById('chat-group-contacts');
+    individualList.innerHTML = '';
+    groupList.innerHTML = '';
+
+    chatContacts.forEach(contact => {
+      const contactElement = document.createElement('div');
+      contactElement.className = 'chat-contact';
+      contactElement.innerHTML = `
+        <span class="chat-contact-name"><i class="fas fa-user-circle"></i> ${contact.name}</span>
+        <span class="chat-contact-university"><i class="fas fa-university"></i> ${contact.university}</span>
+      `;
+      contactElement.onclick = () => selectChat(contact.name);
+      if (contact.type === 'individual') {
+        individualList.appendChild(contactElement);
+      } else {
+        groupList.appendChild(contactElement);
       }
-      filteredEvents.forEach(event => {
-        const card = document.createElement('div');
-        card.className = 'card interclub-card';
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'article');
-        card.setAttribute('aria-label', `Evento ${event.name}: ${event.description}, fecha ${event.date}, lugar ${event.location}, universidades: ${event.universities.join(', ')}`);
-        card.innerHTML = `
-          <h3><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${event.name}</h3>
-          <p>${event.description}</p>
-          <p><i class="far fa-clock" aria-hidden="true"></i> Fecha: ${event.date}</p>
-          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Lugar: ${event.location}</p>
-          <span class="university-badge" aria-label="Universidades participantes"><i class="fas fa-university" aria-hidden="true"></i> ${event.universities.join(', ')}</span>
-        `;
-        intereventsList.appendChild(card);
-      });
-    }
-    function filterClubs() {
-      loadInterclubs();
-      loadInterevents();
+    });
+  }
+
+  function selectChat(contactName) {
+    document.getElementById('current-chat-name').textContent = contactName;
+    document.querySelectorAll('.chat-contact').forEach(contact => contact.classList.remove('active'));
+    // Find and set active class (this is simplified, needs better identification for real app)
+    const activeContact = Array.from(document.querySelectorAll('.chat-contact')).find(c => c.textContent.includes(contactName));
+    if (activeContact) {
+      activeContact.classList.add('active');
     }
 
-    // Chat system handlers
-    function switchChatTab(tab) {
-      currentChatType = tab;
-      document.querySelectorAll('.chat-tab').forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-        t.setAttribute('tabindex', '-1');
-      });
-      const newTab = document.querySelector(`.chat-tab[onclick="switchChatTab('${tab}')"]`);
-      if(newTab) {
-        newTab.classList.add('active');
-        newTab.setAttribute('aria-selected', 'true');
-        newTab.setAttribute('tabindex', '0');
-        newTab.focus();
-      }
-      document.getElementById('global-contacts').style.display = tab === 'global' ? 'block' : 'none';
-      document.getElementById('private-contacts').style.display = tab === 'private' ? 'block' : 'none';
-      currentChat = tab === 'global' ? 'global-chat' : 'usuario1';
-      loadChat(currentChat);
+    // Load messages for this chat
+    const messagesContainer = document.getElementById('chat-messages');
+    messagesContainer.innerHTML = '';
+    if (!chatMessages[contactName]) {
+      chatMessages[contactName] = []; // Initialize if no messages exist
     }
+    chatMessages[contactName].forEach(msg => displayMessage(msg.sender, msg.text, msg.time, msg.type));
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
+  }
 
-    function openChat(chatId) {
-      currentChat = chatId;
-      document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
-      const activeContact = document.querySelector(`.chat-contact[onclick="openChat('${chatId}')"]`);
-      if(activeContact) activeContact.classList.add('active');
-      loadChat(chatId);
-    }
-    function openPrivateChat(userId) {
-      currentChat = userId;
-      document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
-      const activeContact = document.querySelector(`.chat-contact[onclick="openPrivateChat('${userId}')"]`);
-      if(activeContact) activeContact.classList.add('active');
-      loadChat(userId);
-    }
-    function loadChat(chatId) {
-      const chatHeader = document.getElementById('chat-header');
-      const chatMessagesDiv = document.getElementById('chat-messages');
-      chatMessagesDiv.innerHTML = '';
+  function displayMessage(sender, text, time, type) {
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${type}`;
+    messageElement.innerHTML = `
+      <div class="message-sender">${sender}</div>
+      <div class="message-text">${text}</div>
+      <div class="message-time">${time}</div>
+    `;
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
 
-      let chatName = 'Chat General';
-      if (chatId === 'global-chat') chatName = 'Chat General';
-      else if (chatId === 'club-tecnologia') chatName = 'Club de Tecnología';
-      else if (chatId === 'club-robotica') chatName = 'Club de Robótica';
-      else {
-        const userEl = document.querySelector(`.chat-contact[onclick="openPrivateChat('${chatId}')"] .chat-contact-name`);
-        chatName = userEl ? userEl.textContent : 'Chat Privado';
-      }
-      chatHeader.innerHTML = `<i class="fas fa-comments" aria-hidden="true"></i> ${chatName}`;
+  function sendMessage() {
+    const messageInput = document.getElementById('message-input');
+    const messageText = messageInput.value.trim();
+    const currentChat = document.getElementById('current-chat-name').textContent;
 
-      if (!chatMessages[chatId]) chatMessages[chatId] = [];
-      chatMessages[chatId].forEach(msg => {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${msg.isCurrentUser ? 'sent' : 'received'}`;
-        const senderIcon = msg.sender.toLowerCase().includes('sistema') ? 'fa-robot' : 'fa-user';
-        messageDiv.innerHTML = `
-          <div class="message-sender"><i class="fas ${senderIcon}" aria-hidden="true"></i> ${msg.sender}</div>
-          <div class="message-content">${msg.content}</div>
-          <div class="message-time">${msg.time}</div>
-        `;
-        chatMessagesDiv.appendChild(messageDiv);
-      });
-      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-    }
-    function sendMessage() {
-      if (!currentUser) return;
-      const input = document.getElementById('chat-input');
-      const content = input.value.trim();
-      if (!content) return;
-      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      if (!chatMessages[currentChat]) chatMessages[currentChat] = [];
-      chatMessages[currentChat].push({
+    if (messageText && currentChat !== 'Selecciona un contacto') {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const newMessage = {
         sender: currentUser.username,
-        content,
-        time,
-        isCurrentUser: true
+        text: messageText,
+        time: time,
+        type: 'sent'
+      };
+      if (!chatMessages[currentChat]) {
+        chatMessages[currentChat] = [];
+      }
+      chatMessages[currentChat].push(newMessage);
+      displayMessage(newMessage.sender, newMessage.text, newMessage.time, newMessage.type);
+      messageInput.value = '';
+    } else if (!messageText) {
+      alert("Por favor, escribe un mensaje.");
+    } else {
+      alert("Por favor, selecciona un contacto o grupo para chatear.");
+    }
+  }
+
+
+  // Funcionalidad de Llamadas (simulada)
+  let localStream;
+  let peerConnection;
+  const localVideo = document.getElementById('local-video');
+  const remoteVideo = document.getElementById('remote-video');
+
+  const configuration = {
+    iceServers: [
+      { urls: 'stun:stun.l.google.com:19302' } // Google's public STUN server
+    ]
+  };
+
+  async function startCall() {
+    try {
+      localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      localVideo.srcObject = localStream;
+
+      peerConnection = new RTCPeerConnection(configuration);
+
+      localStream.getTracks().forEach(track => {
+        peerConnection.addTrack(track, localStream);
       });
-      input.value = '';
-      loadChat(currentChat);
+
+      peerConnection.ontrack = (event) => {
+        remoteVideo.srcObject = event.streams[0];
+      };
+
+      peerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+          // Send candidate to remote peer (signaling server needed for real app)
+          console.log('ICE Candidate:', event.candidate);
+        }
+      };
+
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+      // Send offer to remote peer (signaling server needed for real app)
+      console.log('SDP Offer:', offer.sdp);
+
+      alert('Llamada iniciada. Esperando al otro participante (funcionalidad P2P simulada). En una aplicación real, necesitarías un servidor de señalización para conectar a los usuarios.');
+
+    } catch (error) {
+      console.error('Error al iniciar la llamada:', error);
+      alert('Error al iniciar la llamada. Asegúrate de permitir el acceso a tu cámara y micrófono.');
+    }
+  }
+
+  function endCall() {
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+    }
+    if (peerConnection) {
+      peerConnection.close();
+    }
+    localVideo.srcObject = null;
+    remoteVideo.srcObject = null;
+    alert('Llamada terminada.');
+  }
+
+  function toggleVideo() {
+    localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
+    const icon = document.querySelector('#toggle-video-btn i');
+    if (localStream.getVideoTracks()[0].enabled) {
+      icon.classList.replace('fa-video-slash', 'fa-video');
+    } else {
+      icon.classList.replace('fa-video', 'fa-video-slash');
+    }
+  }
+
+  function toggleAudio() {
+    localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
+    const icon = document.querySelector('#toggle-audio-btn i');
+    if (localStream.getAudioTracks()[0].enabled) {
+      icon.classList.replace('fa-microphone-slash', 'fa-microphone');
+    } else {
+      icon.classList.replace('fa-microphone', 'fa-microphone-slash');
+    }
+  }
+
+  // Funcionalidad de Notas
+  let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+  function saveNote(title, content) {
+    const newNote = {
+      id: Date.now(),
+      title,
+      content,
+      date: new Date().toLocaleDateString()
+    };
+    notes.push(newNote);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    loadNotes();
+  }
+
+  function deleteNote(id) {
+    notes = notes.filter(note => note.id !== id);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    loadNotes();
+  }
+
+  function loadNotes() {
+    const list = document.getElementById('notes-list');
+    list.innerHTML = '';
+    if (notes.length === 0) {
+      list.innerHTML = '<p style="text-align: center; color: #888; margin-top: 2rem;">No tienes notas guardadas.</p>';
+      return;
+    }
+    notes.forEach(note => {
+      const noteCard = document.createElement('div');
+      noteCard.className = 'note-card';
+      noteCard.innerHTML = `
+        <h4>${note.title}</h4>
+        <p>${note.content}</p>
+        <span class="note-date"><i class="fas fa-calendar-alt"></i> ${note.date}</span>
+        <button class="delete-note" data-id="${note.id}"><i class="fas fa-trash-alt"></i></button>
+      `;
+      list.appendChild(noteCard);
+    });
+
+    document.querySelectorAll('.delete-note').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const noteId = parseInt(e.currentTarget.dataset.id);
+        deleteNote(noteId);
+      });
+    });
+  }
+
+  document.getElementById('new-note-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('note-title').value;
+    const content = document.getElementById('note-content').value;
+    if (title && content) {
+      saveNote(title, content);
+      document.getElementById('new-note-form').reset();
+    } else {
+      alert('Por favor, ingresa un título y contenido para la nota.');
+    }
+  });
+
+  // Funcionalidad de Red Social
+  const socialFeed = document.getElementById('social-feed');
+
+  document.getElementById('social-post-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const text = document.getElementById('post-text').value.trim();
+    const imageFile = document.getElementById('post-image').files[0];
+
+    if (!text && !imageFile) {
+      alert("Escribe algo o añade una imagen.");
+      return;
     }
 
-    // Initialize on DOM ready
-    document.addEventListener('DOMContentLoaded', () => {
-      initializeApp();
-      document.getElementById('chat-input').addEventListener('keypress', e => {
-        if (e.key === 'Enter') sendMessage();
-      });
-      if (!chatMessages['global-chat'] || chatMessages['global-chat'].length === 0) {
-        chatMessages['global-chat'] = [{
-          sender: 'Sistema',
-          content: 'Bienvenido al chat general de Collabu. ¡Conéctate con estudiantes de otras instituciones!',
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isCurrentUser: false
-        }];
-      }
-    });
-  </script>
+    const postElement = document.createElement("div");
+    postElement.style.border = "1px solid #ddd";
+    postElement.style.borderRadius = "8px";
+    postElement.style.padding = "1rem";
+    postElement.style.marginBottom = "1rem";
+    postElement.style.background = "rgba(233, 240, 255, 0.9)"; // Fondo semi-transparente para posts
+
+    const now = new Date();
+    let content = `<p><strong>${currentUser.username}</strong> <em style='color:#888'>${now.toLocaleString()}</em></p>`;
+    content += `<p>${text}</p>`;
+
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        content += `<img src=\"${e.target.result}\" style=\"max-width: 100%; margin-top: 1rem; border-radius: 8px;\" />`;
+        postElement.innerHTML = content;
+        socialFeed.prepend(postElement);
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      postElement.innerHTML = content;
+      socialFeed.prepend(postElement);
+    }
+
+    document.getElementById("social-post-form").reset();
+  });
+
+
+  // Inicialización
+  document.addEventListener('DOMContentLoaded', () => {
+    checkSession();
+    loadClubs();
+    loadActivities();
+    loadCollaborations();
+    loadNetworkProfiles();
+    loadChatContacts('individual');
+    loadNotes();
+  });
+</script>
+
 </body>
 </html>
-
